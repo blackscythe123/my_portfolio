@@ -89,13 +89,13 @@ npm run build
 * **FoodExpress** – Full-stack food ordering web app
 * **Hutloo** – Logistics optimization with map tracking
 
-Each project is listed in `resume.json` (or similar) for automatic rendering.
+
 
 ---
 
 ## 🌐 Live Demo
 
-> Coming soon… (or add your hosted URL here once deployed)
+> https://simiyon-portfolio.vercel.app/
 
 ---
 
