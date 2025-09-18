@@ -7,7 +7,7 @@ const Skills = () => {
     {
       title: "Programming Languages",
       icon: Code,
-      skills: ["Python", "JavaScript", "C++", "C", "Dart"],
+      skills: ["Python", "JavaScript", "C++", "C", "Dart","Java"],
       color: "bg-gradient-primary"
     },
     {
@@ -30,7 +30,7 @@ const Skills = () => {
     }
   ];
 
-  const fieldsOfInterest = ["Machine Learning", "AI Agents", "Automations", "Flutter App Development", "Deep Research"];
+  const fieldsOfInterest = ["Machine Learning", "AI Agents", "Automations", "Deep Learning"];
 
   return (
     <section className="py-20 px-6">

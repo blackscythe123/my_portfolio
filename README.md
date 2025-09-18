@@ -73,6 +73,21 @@ npm install  # or yarn install
 npm run dev
 ```
 
+5. **Configure GitHub Repositories (optional)**
+
+This portfolio can fetch public repositories live from GitHub to populate the Repositories section.
+
+- Copy `.env.example` to `.env` in the project root.
+- Set `VITE_GITHUB_USERNAME` to your GitHub username (defaults to `blackscythe123`).
+- Optionally set `VITE_GITHUB_TOKEN` to a Personal Access Token to increase API rate limits for unauthenticated users. No scopes are required to read public repos.
+
+Example `.env`:
+
+```
+VITE_GITHUB_USERNAME=blackscythe123
+# VITE_GITHUB_TOKEN=ghp_your_token_here
+```
+
 4. **Build for production**
 
 ```bash
