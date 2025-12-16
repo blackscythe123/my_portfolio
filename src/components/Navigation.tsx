@@ -90,7 +90,7 @@ export function Navigation() {
               className='text-xs text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors'
               aria-label="Toggle theme"
             >
-              {isDark ? '☀ Light' : '🌙 Dark'}
+              {isDark ? 'Light' : ' Dark'}
             </button>
             
             <Link 

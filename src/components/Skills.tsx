@@ -35,7 +35,7 @@ export function Skills() {
       title: 'Specialized Domains',
       capability: 'Solving complex, domain-specific problems',
       description: 'I explore emerging technologies and apply specialized knowledge to unique challenges—whether it\'s automating workflows, building decentralized applications, or implementing computer vision systems.',
-      technologies: ['Automation', 'Web3', 'Linux', 'Zappier', 'n8n']
+      technologies: ['AI Studios', 'Web3', 'Linux', 'Zappier', 'N8N']
     }
   ];
 
@@ -61,21 +61,25 @@ export function Skills() {
     <section 
       ref={sectionRef}
       id='skills' 
-      className='py-32 bg-gray-50 dark:bg-[#0a0a0a]'
+      className='py-20 md:py-28 lg:py-32 bg-gray-50 dark:bg-[#0a0a0a]'
     >
-      <div className='max-w-3xl mx-auto px-6'>
-        {/* Section Header */}
-        <header className='mb-20'>
-          <p className='fade-up opacity-0 translate-y-4 transition-all duration-700 text-sm tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-4'>
-            Capabilities
-          </p>
-          <h2 className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-100 text-3xl md:text-4xl font-light text-gray-900 dark:text-white leading-tight'>
-            A practical toolkit refined through <span className='font-semibold'>real-world projects</span> and continuous learning.
-          </h2>
-        </header>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-12'>
+        <div className='grid grid-cols-12 gap-8 md:gap-12 lg:gap-16'>
+          {/* Left Column: Sticky Header */}
+          <div className='col-span-12 lg:col-span-3'>
+            <div className='lg:sticky lg:top-20'>
+              <p className='fade-up opacity-0 translate-y-4 transition-all duration-700 text-xs tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-4'>
+                What I Bring
+              </p>
+              <h2 className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-100 text-3xl md:text-4xl font-light text-gray-900 dark:text-white leading-tight'>
+                Capabilities
+              </h2>
+            </div>
+          </div>
 
-        {/* Skills List */}
-        <div className='space-y-0'>
+          {/* Right Column: Skills List */}
+          <div className='col-span-12 lg:col-span-9'>
+            <div className='space-y-0'>
           {skillCategories.map((category, index) => (
             <article 
               key={category.title}
@@ -83,7 +87,7 @@ export function Skills() {
               style={{ transitionDelay: `${150 + index * 100}ms` }}
             >
               {/* Divider */}
-              <div className='h-px bg-gray-200 dark:bg-gray-800 mb-12' />
+              <div className='h-px bg-gray-200 dark:bg-gray-800 mb-10 md:mb-12' />
               
               <div className='pb-12'>
                 {/* Category number and title */}
@@ -97,25 +101,27 @@ export function Skills() {
                 </div>
 
                 {/* Capability statement */}
-                <p className='text-lg text-gray-700 dark:text-gray-300 mb-4 pl-10'>
+                <p className='text-lg text-gray-700 dark:text-gray-300 mb-4 md:pl-10'>
                   {category.capability}
                 </p>
 
                 {/* Description */}
-                <p className='text-gray-600 dark:text-gray-400 leading-relaxed mb-6 pl-10'>
+                <p className='text-gray-600 dark:text-gray-400 leading-relaxed mb-6 md:pl-10'>
                   {category.description}
                 </p>
 
                 {/* Technologies - muted supporting text */}
-                <p className='text-sm text-gray-400 dark:text-gray-500 pl-10'>
+                <p className='text-sm text-gray-400 dark:text-gray-500 md:pl-10'>
                   {category.technologies.join(' · ')}
                 </p>
               </div>
             </article>
           ))}
           
-          {/* Final divider */}
-          <div className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-700 h-px bg-gray-200 dark:bg-gray-800' />
+              {/* Final divider */}
+              <div className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-700 h-px bg-gray-200 dark:bg-gray-800' />
+            </div>
+          </div>
         </div>
       </div>
     </section>
