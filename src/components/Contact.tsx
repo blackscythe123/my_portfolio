@@ -77,7 +77,7 @@ export function Contact() {
               GitHub
             </Link>
             <Link 
-              href='https://linkedin.com' 
+              href='https://www.linkedin.com/in/simiyonvinscentsamuel/' 
               target='_blank'
               className='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors'
             >
