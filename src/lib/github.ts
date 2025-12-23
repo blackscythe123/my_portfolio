@@ -42,7 +42,7 @@ export async function fetchGitHubUser(
   try {
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: buildGitHubHeaders(),
-      next: { revalidate: 3 }, // Revalidate every hour
+      next: { revalidate: 3600 }, // Revalidate every 60 mins
     });
 
     if (!response.ok) {
