@@ -1,4 +1,3 @@
-
 import {
   Hero,
   Navigation,
@@ -6,17 +5,44 @@ import {
   Projects,
   Contact,
 } from '@/components';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.simiyonvinscentsamuel.tech'),
+
+  title: 'Simiyon Vinscent Samuel | Portfolio',
+  description:
+    'I build intelligent systems at the intersection of automation, web3, and full-stack development.',
+
+  openGraph: {
+    title: 'Simiyon Vinscent Samuel | Portfolio',
+    description:
+      'I build intelligent systems at the intersection of automation, web3, and full-stack development.',
+    url: '/',
+    siteName: 'Simiyon Portfolio',
+    images: [
+      {
+        url: '/thumbnail.png',
+        width: 1200,
+        height: 630,
+        alt: 'Simiyon Portfolio Preview',
+      },
+    ],
+    type: 'website',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Simiyon Vinscent Samuel | Portfolio',
+    description:
+      'I build intelligent systems at the intersection of automation, web3, and full-stack development.',
+    images: ['/thumbnail.png'],
+  },
+};
 
 export default function Home() {
   return (
-    <main className='min-h-screen bg-background relative overflow-x-hidden'>
-      {/* Decorative background layers */}
-      <div aria-hidden='true' className='pointer-events-none fixed inset-0 -z-10'>
-        <div className='absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background' />
-        <div className='absolute -top-56 left-1/2 h-[720px] w-[720px] -translate-x-1/2 rounded-full bg-primary/12 blur-3xl' />
-        <div className='absolute -bottom-64 left-1/3 h-[720px] w-[720px] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl' />
-      </div>
-
+    <main className="min-h-screen bg-background relative overflow-x-hidden">
       <Navigation />
       <Hero />
       <Skills />
@@ -25,4 +51,3 @@ export default function Home() {
     </main>
   );
 }
-
