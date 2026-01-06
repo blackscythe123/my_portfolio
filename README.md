@@ -1,10 +1,9 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js to Android APK using Capacitor
 
-## Getting Started
+This project is a Next.js web application packaged into a real Android app (APK) using Capacitor and Android Studio. The app is exported as static files and bundled inside a native Android WebView so it can run offline like a mobile app.
 
-First, run the development server:
-
-```bash
+## Development (Run as a Website)
+```
 npm run dev
 # or
 yarn dev
@@ -13,24 +12,86 @@ pnpm dev
 # or
 bun dev
 ```
+Open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Edit app/page.tsx — changes auto-reload.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build Static Export (Required for Capacitor)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Static export mode is enabled in next.config.js:
+```
+output: "export"
+```
+Build the project:
+```
+npm run build
+```
+The static site is generated in the /out directory.
 
-## Learn More
+## Capacitor Setup
 
-To learn more about Next.js, take a look at the following resources:
+Install Capacitor:
+```
+npm install @capacitor/core @capacitor/cli
+npm install @capacitor/android
+```
+Initialize Capacitor (first time only):
+```
+npx cap init
+```
+Set webDir to “out” in capacitor.config.(ts|json):
+```
+webDir: "out"
+```
+Copy the exported build:
+```
+npx cap copy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add Android platform:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npx cap add android
+```
+## Open in Android Studio
 
-## Deploy on Vercel
+Open the native project:
+```
+npx cap open android
+```
+To run or debug, click the Run button.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Build Debug APK
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Android Studio → Build → Build APK(s)
+
+APK output path:
+```
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+## Build Signed Release APK
+
+Android Studio → Build → Generate Signed App Bundle / APK → APK
+
+Create or select a keystore → Finish
+
+Output path:
+```
+android/app/release/app-release.apk
+```
+## Notes
+
+- The app works offline because files are bundled inside the APK.
+- Remote images or APIs require internet.
+- After changing the website, rebuild and sync:
+```
+npm run build
+npx cap copy
+```
+## Docs
+
+Next.js static 
+
+[export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
+
+[Capacitor](https://capacitorjs.com/docs)
+
+[Android Studio Build](https://developer.android.com/studio/build)
