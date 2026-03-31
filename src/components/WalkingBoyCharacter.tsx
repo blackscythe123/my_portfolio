@@ -50,8 +50,7 @@ export function WalkingBoyCharacter() {
             x2='24'
             y2='56'
             animate={{ rotate: leftArmRotation }}
-            transformBox='fill-box'
-            transformOrigin='48px 42px'
+            style={{ transformOrigin: '48px 42px' }}
             transition={{ duration: 0.35, repeat: state === 'wave' ? Number.POSITIVE_INFINITY : 0 }}
           />
 
@@ -61,8 +60,7 @@ export function WalkingBoyCharacter() {
             x2='72'
             y2='56'
             animate={{ rotate: rightArmRotation }}
-            transformBox='fill-box'
-            transformOrigin='48px 42px'
+            style={{ transformOrigin: '48px 42px' }}
             transition={{ duration: 0.35, repeat: state === 'wave' ? Number.POSITIVE_INFINITY : 0 }}
           />
 

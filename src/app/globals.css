@@ -7,17 +7,7 @@
   --secondary: #000000;
   --card: #ffffff;
   --border: rgba(0, 0, 0, 0.14);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-card: var(--card);
-  --color-border: var(--border);
-  
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: Inter, sans-serif;
   --font-mono: 'Fira Code', monospace;
 }
 

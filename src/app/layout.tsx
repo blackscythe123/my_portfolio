@@ -29,7 +29,7 @@ export default function RootLayout({
         <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0' rel='stylesheet' />
       </head>
       <body
-        className={`${inter.variable} ${firaCode.variable} antialiased bg-background text-foreground font-sans`}
+        className={`${inter.variable} ${firaCode.variable} bg-white text-black antialiased font-sans`}
       >
         <ScrollStoryProvider>{children}</ScrollStoryProvider>
       </body>

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className='relative min-h-screen overflow-x-hidden bg-background'>
+    <main className='relative min-h-screen overflow-x-hidden bg-white text-black'>
       <Navigation />
       <WalkingBoyCharacter />
       {storyActs.map((act, index) => (
