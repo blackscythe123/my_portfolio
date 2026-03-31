@@ -1,4 +1,5 @@
 import { type StoryAct } from '@/data/story-acts';
+import { layoutStoryCopy } from '@/lib/pretextAdapter';
 
 type StorySectionProps = {
   act: StoryAct;
@@ -7,6 +8,7 @@ type StorySectionProps = {
 
 export function StorySection({ act, index }: StorySectionProps) {
   const isDark = act.tone === 'dark';
+  const copy = layoutStoryCopy(act.body);
 
   return (
     <section
@@ -23,9 +25,11 @@ export function StorySection({ act, index }: StorySectionProps) {
         <h2 className='story-headline max-w-4xl text-4xl leading-tight md:text-6xl'>
           {act.headline}
         </h2>
-        <p className='story-body max-w-2xl text-base leading-8 md:text-xl'>
-          {act.body}
-        </p>
+        <div className='story-body max-w-2xl space-y-2 text-base leading-8 md:text-xl'>
+          {copy.lines.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
       </div>
     </section>
   );
