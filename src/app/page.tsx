@@ -1,10 +1,9 @@
 import {
-  Hero,
   Navigation,
-  Skills,
-  Projects,
-  Contact,
 } from '@/components';
+import { StorySection } from '@/components/StorySection';
+import { WalkingBoyCharacter } from '@/components/WalkingBoyCharacter';
+import { storyActs } from '@/data/story-acts';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -42,12 +41,12 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background relative overflow-x-hidden">
+    <main className='relative min-h-screen overflow-x-hidden bg-background'>
       <Navigation />
-      <Hero />
-      <Skills />
-      <Projects />
-      <Contact />
+      <WalkingBoyCharacter />
+      {storyActs.map((act, index) => (
+        <StorySection key={act.id} act={act} index={index} />
+      ))}
     </main>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Fira_Code } from 'next/font/google';
 import './globals.css';
+import { ScrollStoryProvider } from '@/contexts/ScrollStoryContext';
 
 const inter = Inter({
   variable: '--font-sans',
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${firaCode.variable} antialiased bg-background text-foreground font-sans`}
       >
-        {children}
+        <ScrollStoryProvider>{children}</ScrollStoryProvider>
       </body>
     </html>
   );
