@@ -1,17 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Fira_Code } from 'next/font/google';
 import './globals.css';
-import { ScrollStoryProvider } from '@/contexts/ScrollStoryContext';
-
-const inter = Inter({
-  variable: '--font-sans',
-  subsets: ['latin'],
-});
-
-const firaCode = Fira_Code({
-  variable: '--font-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: 'Simiyon Vinscent Samuel | Automation & Web3 Engineer',
@@ -25,13 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='scroll-smooth'>
-      <head>
-        <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0' rel='stylesheet' />
-      </head>
-      <body
-        className={`${inter.variable} ${firaCode.variable} bg-white text-black antialiased font-sans`}
-      >
-        <ScrollStoryProvider>{children}</ScrollStoryProvider>
+      <body className='antialiased'>
+        {children}
       </body>
     </html>
   );
