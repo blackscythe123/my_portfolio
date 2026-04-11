@@ -48,6 +48,7 @@ export default function Home() {
           <a href='#work'>Work</a>
           <a href='#systems'>Systems</a>
           <a href='#contact'>Contact</a>
+          <a href='/ascii'>Ascii Mode</a>
         </nav>
       </header>
 
@@ -62,6 +63,9 @@ export default function Home() {
           <div className='hero-actions'>
             <a href='#work' className='btn-primary'>
               Explore Work
+            </a>
+            <a href='/ascii' className='btn-secondary'>
+              Enter ASCII Cinematic
             </a>
             <a href='mailto:simiyonvinscentsamuel@gmail.com' className='btn-secondary'>
               Start a Conversation
