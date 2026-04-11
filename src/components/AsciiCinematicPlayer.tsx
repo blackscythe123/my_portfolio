@@ -368,6 +368,7 @@ export function AsciiCinematicPlayer({
       const frameRight = Math.floor(cols * 0.92);
       const frameTop = Math.floor(rows * 0.16);
       const frameBottom = Math.floor(rows * 0.86);
+      const frameInnerWidth = Math.max(8, frameRight - frameLeft - 1);
 
       const lineStartRow = Math.floor((frameTop + frameBottom) / 2) - Math.floor(lines.length / 2);
 
@@ -400,18 +401,18 @@ export function AsciiCinematicPlayer({
           const textRowIndex = r - lineStartRow;
           if (!cell && textRowIndex >= 0 && textRowIndex < lines.length) {
             const line = lines[textRowIndex] ?? '';
-            const start = Math.floor((cols - line.length) / 2);
+            const visibleLine =
+              line.length > frameInnerWidth ? line.slice(0, frameInnerWidth) : line;
+            const start = Math.floor((cols - visibleLine.length) / 2);
             const rel = c - start;
-            if (rel >= 0 && rel < line.length) {
-              const char = line[rel] ?? ' ';
-              if (char !== ' ') {
-                cell = {
-                  char,
-                  weight: textRowIndex === 0 ? 800 : 500,
-                  style: textRowIndex === 2 ? 'italic' : 'normal',
-                  alpha: textRowIndex === 0 ? 10 : 9,
-                };
-              }
+            if (rel >= 0 && rel < visibleLine.length) {
+              const char = visibleLine[rel] ?? ' ';
+              cell = {
+                char,
+                weight: textRowIndex === 0 ? 800 : 500,
+                style: textRowIndex === 2 ? 'italic' : 'normal',
+                alpha: textRowIndex === 0 ? 10 : 9,
+              };
             }
           }
 

@@ -3,6 +3,7 @@ import type { AsciiPortfolioData, AsciiScene, SceneSnapshot } from './types';
 
 function cleanLine(value: string, maxLength = 72): string {
   return value
+    .replace(/[^\x20-\x7E]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, maxLength)
@@ -40,7 +41,7 @@ export function buildAsciiScenes(portfolio?: AsciiPortfolioData): AsciiScene[] {
       lines: [
         cleanLine(source.bio || 'BUILDING AUTOMATION WEB3 FULL STACK SYSTEMS'),
         cleanLine(`GITHUB :: ${source.username} | FOLLOWERS :: ${source.followers}`),
-        cleanLine(`VISIBLE REPOS :: ${source.publicRepos}`),
+        cleanLine(`TOP RECENT PROJECTS :: ${source.repos.length}`),
       ],
       durationMs: 8600,
       driftStrength: 1.08,
