@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "pretext": {
+      "source": "yaniv-golan/pretext-skill",
+      "sourceType": "github",
+      "computedHash": "6356c8fa38cd514129684065460e31f25d7fb395976488bb902f87764faa3c0a"
+    }
+  }
+}
