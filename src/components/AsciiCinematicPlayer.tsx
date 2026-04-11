@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { resolveScene } from '@/lib/ascii/scenes';
+import { defaultAsciiScenes, resolveScene } from '@/lib/ascii/scenes';
+import type { AsciiScene } from '@/lib/ascii/types';
 import styles from './AsciiCinematicPlayer.module.css';
 
 type FontStyle = 'normal' | 'italic';
@@ -65,7 +66,15 @@ function objectPosition(
   };
 }
 
-export function AsciiCinematicPlayer() {
+type AsciiCinematicPlayerProps = {
+  scenes?: AsciiScene[];
+  summaryLine?: string;
+};
+
+export function AsciiCinematicPlayer({
+  scenes = defaultAsciiScenes,
+  summaryLine,
+}: AsciiCinematicPlayerProps) {
   const artRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<HTMLParagraphElement>(null);
@@ -269,7 +278,7 @@ export function AsciiCinematicPlayer() {
       cycleProgress: number;
       lines: string[];
     } {
-      const snapshot = resolveScene(nowMs);
+      const snapshot = resolveScene(nowMs, scenes);
       const t = nowMs / 1000;
 
       for (let r = 0; r < rows; r += 1) {
@@ -463,7 +472,7 @@ export function AsciiCinematicPlayer() {
     initGrid();
 
     if (reducedMotion) {
-      const snapshot = resolveScene(0);
+      const snapshot = resolveScene(0, scenes);
       for (let i = 0; i < 18; i += 1) {
         updateSimulation(i * 30);
       }
@@ -533,7 +542,7 @@ export function AsciiCinematicPlayer() {
         window.clearTimeout(resizeTimer);
       }
     };
-  }, []);
+  }, [scenes]);
 
   return (
     <div className={styles.cinematicRoot}>
@@ -549,8 +558,8 @@ export function AsciiCinematicPlayer() {
       <div ref={statsRef} className={styles.stats} aria-hidden='true' />
 
       <div className={styles.srOnly}>
-        ASCII cinematic portfolio mode is running in passive autoplay scenes that cycle through
-        profile, capabilities, work focus, and contact information.
+        {summaryLine ??
+          'ASCII cinematic portfolio mode is running in passive autoplay scenes that cycle through profile, capabilities, work focus, and contact information.'}
       </div>
     </div>
   );

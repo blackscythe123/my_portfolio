@@ -1,97 +1,134 @@
-import type { AsciiScene, SceneSnapshot } from './types';
+import { fallbackAsciiPortfolioData } from './portfolio';
+import type { AsciiPortfolioData, AsciiScene, SceneSnapshot } from './types';
 
-export const asciiScenes: AsciiScene[] = [
-  {
-    id: 'boot',
-    label: 'BOOT SEQUENCE',
-    lines: [
-      'SIMIYON VINCENT SAMUEL',
-      'AUTOMATION  |  WEB3  |  FULL STACK',
-      'SCENE 01 :: SYSTEM INITIALIZATION',
-    ],
-    durationMs: 7600,
-    driftStrength: 0.95,
-    emitterBoost: 1.05,
-    objectAmplitude: 0.28,
-  },
-  {
-    id: 'build',
-    label: 'BUILD SYSTEMS',
-    lines: [
-      'I DESIGN AUTOMATED PRODUCT FLOWS',
-      'FROM INFRA STRUCTURE TO EXPERIENCES',
-      'SCENE 02 :: ARCHITECTURE IN MOTION',
-    ],
-    durationMs: 8600,
-    driftStrength: 1.15,
-    emitterBoost: 1.2,
-    objectAmplitude: 0.34,
-  },
-  {
-    id: 'ship',
-    label: 'SHIP PRODUCTS',
-    lines: [
-      'SELECTED WORK STREAMS THROUGH HERE',
-      'PIPELINES  PROTOCOLS  FRONTENDS',
-      'SCENE 03 :: DEPLOYMENT PULSE',
-    ],
-    durationMs: 8400,
-    driftStrength: 1.05,
-    emitterBoost: 1.15,
-    objectAmplitude: 0.3,
-  },
-  {
+function cleanLine(value: string, maxLength = 72): string {
+  return value
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, maxLength)
+    .toUpperCase();
+}
+
+function formatDateLabel(isoDate: string): string {
+  const date = new Date(isoDate);
+  if (Number.isNaN(date.getTime())) {
+    return 'UNKNOWN';
+  }
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}`;
+}
+
+export function buildAsciiScenes(portfolio?: AsciiPortfolioData): AsciiScene[] {
+  const source = portfolio ?? fallbackAsciiPortfolioData;
+
+  const baseScenes: AsciiScene[] = [
+    {
+      id: 'boot',
+      label: 'BOOT SEQUENCE',
+      lines: [
+        cleanLine(source.name),
+        cleanLine(`${source.role} :: ${source.location}`),
+        cleanLine('ASCII CINEMATIC PORTFOLIO MODE'),
+      ],
+      durationMs: 7600,
+      driftStrength: 0.95,
+      emitterBoost: 1.06,
+      objectAmplitude: 0.28,
+    },
+    {
+      id: 'profile',
+      label: 'PROFILE SIGNAL',
+      lines: [
+        cleanLine(source.bio || 'BUILDING AUTOMATION WEB3 FULL STACK SYSTEMS'),
+        cleanLine(`GITHUB :: ${source.username} | FOLLOWERS :: ${source.followers}`),
+        cleanLine(`VISIBLE REPOS :: ${source.publicRepos}`),
+      ],
+      durationMs: 8600,
+      driftStrength: 1.08,
+      emitterBoost: 1.14,
+      objectAmplitude: 0.33,
+    },
+  ];
+
+  const projectScenes: AsciiScene[] = source.repos.map((repo, index) => {
+    const primaryDetail = repo.description
+      ? cleanLine(repo.description, 68)
+      : repo.topics.length > 0
+        ? cleanLine(repo.topics.slice(0, 4).join(' | '), 68)
+        : 'NO DESCRIPTION AVAILABLE';
+
+    return {
+      id: `project-${index + 1}`,
+      label: `PROJECT ${index + 1}/${Math.max(1, source.repos.length)}`,
+      lines: [
+        cleanLine(repo.name, 58),
+        cleanLine(
+          `${repo.language} :: STARS ${repo.stars} :: ${repo.active ? 'ACTIVE' : 'ARCHIVE'} :: ${formatDateLabel(repo.updatedAt)}`,
+          70,
+        ),
+        primaryDetail,
+      ],
+      durationMs: 3600,
+      driftStrength: 0.92 + (index % 5) * 0.05,
+      emitterBoost: 1 + (index % 4) * 0.06,
+      objectAmplitude: 0.2 + (index % 6) * 0.02,
+    };
+  });
+
+  const endingScene: AsciiScene = {
     id: 'contact',
     label: 'CONTACT LINK',
     lines: [
-      'READY TO BUILD SOMETHING DISTINCT?',
-      'MAIL  ::  SIMIYONVINSCENTSAMUEL@GMAIL.COM',
-      'SCENE 04 :: LOOP AND REENTER',
+      cleanLine('HAVE A PROJECT IN MIND? LET US BUILD SOMETHING TOGETHER.'),
+      cleanLine(`MAIL :: ${source.email}`),
+      cleanLine(`GITHUB :: ${source.githubUrl} | LINKEDIN :: ${source.linkedinUrl}`, 70),
     ],
-    durationMs: 7800,
-    driftStrength: 0.9,
-    emitterBoost: 1,
-    objectAmplitude: 0.22,
-  },
-];
+    durationMs: 8000,
+    driftStrength: 0.88,
+    emitterBoost: 0.98,
+    objectAmplitude: 0.2,
+  };
 
-export const asciiSceneCycleDuration = asciiScenes.reduce(
-  (sum, scene) => sum + scene.durationMs,
-  0,
-);
+  return [...baseScenes, ...projectScenes, endingScene];
+}
 
-export function resolveScene(totalElapsedMs: number): SceneSnapshot {
+export const defaultAsciiScenes = buildAsciiScenes();
+
+export function getAsciiSceneCycleDuration(scenes: AsciiScene[]): number {
+  return scenes.reduce((sum, scene) => sum + scene.durationMs, 0);
+}
+
+export function resolveScene(totalElapsedMs: number, scenes: AsciiScene[]): SceneSnapshot {
+  const fallbackScenes = scenes.length > 0 ? scenes : defaultAsciiScenes;
+  const cycleDuration = getAsciiSceneCycleDuration(fallbackScenes);
+
   const normalizedElapsed =
-    asciiSceneCycleDuration > 0
-      ? ((totalElapsedMs % asciiSceneCycleDuration) + asciiSceneCycleDuration) %
-        asciiSceneCycleDuration
+    cycleDuration > 0
+      ? ((totalElapsedMs % cycleDuration) + cycleDuration) % cycleDuration
       : 0;
 
   let cursor = 0;
 
-  for (let i = 0; i < asciiScenes.length; i += 1) {
-    const scene = asciiScenes[i]!;
+  for (let i = 0; i < fallbackScenes.length; i += 1) {
+    const scene = fallbackScenes[i]!;
     const next = cursor + scene.durationMs;
-    if (normalizedElapsed < next || i === asciiScenes.length - 1) {
+
+    if (normalizedElapsed < next || i === fallbackScenes.length - 1) {
       const sceneElapsedMs = normalizedElapsed - cursor;
-      const sceneProgress =
-        scene.durationMs > 0 ? sceneElapsedMs / scene.durationMs : 0;
+      const sceneProgress = scene.durationMs > 0 ? sceneElapsedMs / scene.durationMs : 0;
 
       return {
         scene,
         sceneIndex: i,
         sceneElapsedMs,
         sceneProgress,
-        cycleProgress:
-          asciiSceneCycleDuration > 0
-            ? normalizedElapsed / asciiSceneCycleDuration
-            : 0,
+        cycleProgress: cycleDuration > 0 ? normalizedElapsed / cycleDuration : 0,
       };
     }
+
     cursor = next;
   }
 
-  const fallback = asciiScenes[0]!;
+  const fallback = fallbackScenes[0]!;
   return {
     scene: fallback,
     sceneIndex: 0,

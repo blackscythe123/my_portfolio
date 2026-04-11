@@ -8,6 +8,31 @@ export type AsciiScene = {
   objectAmplitude: number;
 };
 
+export type AsciiRepoSnapshot = {
+  name: string;
+  description: string;
+  language: string;
+  stars: number;
+  topics: string[];
+  url: string;
+  active: boolean;
+  updatedAt: string;
+};
+
+export type AsciiPortfolioData = {
+  name: string;
+  role: string;
+  location: string;
+  email: string;
+  githubUrl: string;
+  linkedinUrl: string;
+  username: string;
+  bio: string;
+  followers: number;
+  publicRepos: number;
+  repos: AsciiRepoSnapshot[];
+};
+
 export type SceneSnapshot = {
   scene: AsciiScene;
   sceneIndex: number;
