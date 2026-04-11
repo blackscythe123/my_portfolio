@@ -1,3 +1,9 @@
+export type AsciiActorMode = 'neutral' | 'angel' | 'dragon';
+
+export type AsciiEffectProfile = 'calm' | 'embers' | 'shockwave' | 'flare';
+
+export type AsciiTextMode = 'centered' | 'obstacle-flow' | 'spray';
+
 export type AsciiScene = {
   id: string;
   label: string;
@@ -6,6 +12,10 @@ export type AsciiScene = {
   driftStrength: number;
   emitterBoost: number;
   objectAmplitude: number;
+  actorMode: AsciiActorMode;
+  effectProfile: AsciiEffectProfile;
+  textMode: AsciiTextMode;
+  intensity: number;
 };
 
 export type AsciiRepoSnapshot = {

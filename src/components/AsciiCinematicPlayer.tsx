@@ -2,7 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 import { defaultAsciiScenes, resolveScene } from '@/lib/ascii/scenes';
-import type { AsciiScene } from '@/lib/ascii/types';
+import type {
+  AsciiActorMode,
+  AsciiEffectProfile,
+  AsciiScene,
+  AsciiTextMode,
+} from '@/lib/ascii/types';
 import styles from './AsciiCinematicPlayer.module.css';
 
 type FontStyle = 'normal' | 'italic';
@@ -54,9 +59,36 @@ function objectPosition(
   cols: number,
   rows: number,
   amplitude: number,
+  actorMode: AsciiActorMode,
+  intensity: number,
 ): { x: number; y: number } {
+  const ease = 0.5 - Math.cos(clamp(sceneProgress, 0, 1) * Math.PI) * 0.5;
+
+  if (actorMode === 'angel') {
+    const nx = -0.16 + ease * 1.3;
+    const wave = Math.sin(sceneProgress * Math.PI * 2.3 + sceneIndex * 0.58);
+    const ny = clamp(0.4 + wave * amplitude * 0.82, 0.14, 0.82);
+
+    return {
+      x: nx * cols,
+      y: ny * rows,
+    };
+  }
+
+  if (actorMode === 'dragon') {
+    const nx = 1.18 - ease * 1.4;
+    const swoop = Math.sin(sceneProgress * Math.PI) * (0.1 + intensity * 0.12);
+    const wave = Math.sin(sceneProgress * Math.PI * 4.6 + sceneIndex * 0.44);
+    const ny = clamp(0.3 + swoop + wave * amplitude * 1.18, 0.12, 0.88);
+
+    return {
+      x: nx * cols,
+      y: ny * rows,
+    };
+  }
+
   const direction = sceneIndex % 2 === 0 ? 1 : -1;
-  const nx = direction === 1 ? -0.18 + sceneProgress * 1.36 : 1.18 - sceneProgress * 1.36;
+  const nx = direction === 1 ? -0.18 + ease * 1.36 : 1.18 - ease * 1.36;
   const wave = Math.sin(sceneProgress * Math.PI * 2 + sceneIndex * 0.9);
   const ny = clamp(0.5 + wave * amplitude, 0.18, 0.82);
 
@@ -65,6 +97,71 @@ function objectPosition(
     y: ny * rows,
   };
 }
+
+function actorCell(
+  actorMode: AsciiActorMode,
+  dx: number,
+  dy: number,
+  sceneProgress: number,
+): CellStyle | null {
+  if (actorMode === 'angel') {
+    const wingPhase = Math.sin(sceneProgress * Math.PI * 6) > 0 ? '~' : '=';
+    if (Math.abs(dx) <= 1 && Math.abs(dy) <= 1) {
+      return {
+        char: dx === 0 && dy === 0 ? 'A' : '*',
+        weight: 800,
+        style: dy === -1 ? 'italic' : 'normal',
+        alpha: 10,
+      };
+    }
+    if (dy === 0 && Math.abs(dx) === 2) {
+      return {
+        char: wingPhase,
+        weight: 500,
+        style: 'italic',
+        alpha: 9,
+      };
+    }
+    return null;
+  }
+
+  if (actorMode === 'dragon') {
+    if (Math.abs(dx) <= 2 && Math.abs(dy) <= 1) {
+      return {
+        char: dx === 0 && dy === 0 ? 'D' : '#',
+        weight: 800,
+        style: dy === 0 ? 'normal' : 'italic',
+        alpha: 10,
+      };
+    }
+    if (dy === -2 && Math.abs(dx) <= 1) {
+      return {
+        char: '^',
+        weight: 500,
+        style: 'normal',
+        alpha: 9,
+      };
+    }
+    return null;
+  }
+
+  if (Math.abs(dx) <= 1 && Math.abs(dy) <= 1) {
+    return {
+      char: '@',
+      weight: 800,
+      style: 'normal',
+      alpha: 10,
+    };
+  }
+
+  return null;
+}
+
+type TextPlacement = {
+  start: number;
+  text: string;
+  index: number;
+};
 
 type AsciiCinematicPlayerProps = {
   scenes?: AsciiScene[];
@@ -277,13 +374,19 @@ export function AsciiCinematicPlayer({
       sceneProgress: number;
       cycleProgress: number;
       lines: string[];
+      actorMode: AsciiActorMode;
+      effectProfile: AsciiEffectProfile;
+      textMode: AsciiTextMode;
+      intensity: number;
     } {
       const snapshot = resolveScene(nowMs, scenes);
       const t = nowMs / 1000;
+      const driftStrength =
+        snapshot.scene.driftStrength * (0.86 + snapshot.scene.intensity * 0.24);
 
       for (let r = 0; r < rows; r += 1) {
         for (let c = 0; c < cols; c += 1) {
-          const [vx, vy] = velocity(c, r, t, snapshot.scene.driftStrength);
+          const [vx, vy] = velocity(c, r, t, driftStrength);
           const sx = clamp(c - vx, 0, cols - 1.001);
           const sy = clamp(r - vy, 0, rows - 1.001);
 
@@ -321,12 +424,31 @@ export function AsciiCinematicPlayer({
 
       [density, tempDensity] = [tempDensity, density];
 
+      const sceneEnergy = snapshot.scene.emitterBoost * (0.8 + snapshot.scene.intensity * 0.55);
+      const emitterSpread =
+        snapshot.scene.effectProfile === 'shockwave'
+          ? isMobile
+            ? 4
+            : 6
+          : snapshot.scene.effectProfile === 'embers'
+            ? isMobile
+              ? 4
+              : 5
+            : isMobile
+              ? 3
+              : 4;
+
       for (const emitter of EMITTERS) {
         const ex =
           (emitter.cx + Math.cos(t * emitter.freq + emitter.phase) * emitter.orbitR) * cols;
         const ey =
           (emitter.cy + Math.sin(t * emitter.freq * 0.65 + emitter.phase) * emitter.orbitR) * rows;
-        injectDensity(ex, ey, isMobile ? 3 : 4, emitter.strength * snapshot.scene.emitterBoost);
+        const flicker =
+          snapshot.scene.effectProfile === 'embers'
+            ? 0.72 + (Math.sin(t * 8 + emitter.phase) + 1) * 0.23
+            : 1;
+
+        injectDensity(ex, ey, emitterSpread, emitter.strength * sceneEnergy * flicker);
       }
 
       const object = objectPosition(
@@ -335,13 +457,52 @@ export function AsciiCinematicPlayer({
         cols,
         rows,
         snapshot.scene.objectAmplitude,
+        snapshot.scene.actorMode,
+        snapshot.scene.intensity,
       );
 
-      injectDensity(object.x, object.y, isMobile ? 4 : 5, 0.45 * snapshot.scene.emitterBoost);
-      injectDensity(object.x + 2, object.y + 1, isMobile ? 3 : 4, 0.22 * snapshot.scene.emitterBoost);
+      if (snapshot.scene.effectProfile === 'shockwave' || snapshot.scene.effectProfile === 'flare') {
+        const ringPoints = snapshot.scene.effectProfile === 'shockwave' ? 18 : 14;
+        const radius = (0.12 + snapshot.sceneProgress * 0.38) * Math.min(cols, rows);
+        const ringPower =
+          snapshot.scene.effectProfile === 'shockwave'
+            ? 0.11 + snapshot.scene.intensity * 0.13
+            : 0.08 + snapshot.scene.intensity * 0.08;
+
+        for (let i = 0; i < ringPoints; i += 1) {
+          const angle = (i / ringPoints) * Math.PI * 2 + t * 0.2;
+          const ringX = object.x + Math.cos(angle) * radius;
+          const ringY = object.y + Math.sin(angle) * radius * 0.45;
+          injectDensity(ringX, ringY, isMobile ? 2 : 3, ringPower);
+        }
+      }
+
+      const actorSpread = snapshot.scene.actorMode === 'dragon' ? (isMobile ? 6 : 7) : isMobile ? 4 : 5;
+      const actorPower = (0.3 + snapshot.scene.intensity * 0.3) * snapshot.scene.emitterBoost;
+      injectDensity(object.x, object.y, actorSpread, actorPower);
+
+      if (snapshot.scene.actorMode === 'angel') {
+        const haloX = object.x + Math.cos(t * 3.8 + snapshot.sceneIndex) * 2.4;
+        const haloY = object.y - 1.8;
+        injectDensity(haloX, haloY, isMobile ? 3 : 4, 0.18 + snapshot.scene.intensity * 0.14);
+      }
+
+      if (snapshot.scene.actorMode === 'dragon') {
+        const segments = isMobile ? 5 : 7;
+        const direction = object.x > cols * 0.5 ? -1 : 1;
+
+        for (let i = 0; i < segments; i += 1) {
+          const sprayX = object.x + direction * (i + 1) * 2.1;
+          const sprayY =
+            object.y + Math.sin(t * 9.4 + i * 0.7) * (0.45 + snapshot.scene.intensity * 0.8);
+          const sprayPower = Math.max(0.04, (0.23 - i * 0.025) * snapshot.scene.intensity);
+          injectDensity(sprayX, sprayY, isMobile ? 3 : 4, sprayPower);
+        }
+      }
 
       for (let i = 0; i < density.length; i += 1) {
-        density[i] = (density[i] ?? 0) * 0.986;
+        const decay = snapshot.scene.effectProfile === 'shockwave' ? 0.989 : 0.986;
+        density[i] = (density[i] ?? 0) * decay;
       }
 
       return {
@@ -351,6 +512,10 @@ export function AsciiCinematicPlayer({
         sceneProgress: snapshot.sceneProgress,
         cycleProgress: snapshot.cycleProgress,
         lines: snapshot.scene.lines,
+        actorMode: snapshot.scene.actorMode,
+        effectProfile: snapshot.scene.effectProfile,
+        textMode: snapshot.scene.textMode,
+        intensity: snapshot.scene.intensity,
       };
     }
 
@@ -363,14 +528,66 @@ export function AsciiCinematicPlayer({
       sceneProgress: number,
       cycleProgress: number,
       lines: string[],
+      actorMode: AsciiActorMode,
+      effectProfile: AsciiEffectProfile,
+      textMode: AsciiTextMode,
+      intensity: number,
     ): void {
       const frameLeft = Math.floor(cols * 0.08);
       const frameRight = Math.floor(cols * 0.92);
       const frameTop = Math.floor(rows * 0.16);
       const frameBottom = Math.floor(rows * 0.86);
-      const frameInnerWidth = Math.max(8, frameRight - frameLeft - 1);
+      const lineStartRow = Math.floor((frameTop + frameBottom) / 2) - Math.floor(lines.length);
 
-      const lineStartRow = Math.floor((frameTop + frameBottom) / 2) - Math.floor(lines.length / 2);
+      const placements = new Map<number, TextPlacement>();
+      const sprayPhase = nowMs / 170;
+
+      for (let index = 0; index < lines.length; index += 1) {
+        const line = lines[index] ?? '';
+        if (!line) {
+          continue;
+        }
+
+        let laneLeft = frameLeft + 2;
+        let laneRight = frameRight - 2;
+
+        if (textMode === 'obstacle-flow') {
+          if (objectX < cols * 0.5) {
+            laneLeft = Math.max(frameLeft + 2, Math.floor(cols * 0.52));
+          } else {
+            laneRight = Math.min(frameRight - 2, Math.floor(cols * 0.48));
+          }
+        }
+
+        const laneWidth = Math.max(10, laneRight - laneLeft + 1);
+        const visibleLine = line.length > laneWidth ? line.slice(0, laneWidth) : line;
+
+        let row = lineStartRow + index * 2;
+        let start = laneLeft + Math.floor((laneWidth - visibleLine.length) / 2);
+
+        if (textMode === 'spray') {
+          const jitterRow = Math.round(Math.sin(sprayPhase + index * 1.6) * (1 + intensity * 2));
+          const jitterCol = Math.round(Math.cos(sprayPhase * 1.18 + index * 2.2) * (2 + intensity * 8));
+          row = frameTop + 3 + index * 4 + jitterRow;
+          start += jitterCol;
+        }
+
+        row = clamp(row, frameTop + 2, frameBottom - 2);
+        start = clamp(start, frameLeft + 1, Math.max(frameLeft + 1, frameRight - visibleLine.length));
+
+        while (placements.has(row) && row < frameBottom - 2) {
+          row += 1;
+        }
+
+        placements.set(row, {
+          start,
+          text: visibleLine,
+          index,
+        });
+      }
+
+      const fracturedFrame = effectProfile === 'shockwave' && sceneProgress > 0.24;
+      const radiantFrame = effectProfile === 'flare' || (effectProfile === 'embers' && intensity > 0.76);
 
       for (let r = 0; r < rows; r += 1) {
         let html = '';
@@ -390,6 +607,18 @@ export function AsciiCinematicPlayer({
             } else if (c === frameLeft || c === frameRight) {
               frameChar = '|';
             }
+
+            if (fracturedFrame && frameChar !== '+') {
+              const crack = (Math.floor(nowMs / 42) + r * 2 + c * 3) % 17 === 0;
+              if (crack) {
+                frameChar = '.';
+              }
+            }
+
+            if (radiantFrame && (r === frameTop || r === frameBottom) && c % 7 === 0) {
+              frameChar = '*';
+            }
+
             cell = {
               char: frameChar,
               weight: 800,
@@ -398,31 +627,29 @@ export function AsciiCinematicPlayer({
             };
           }
 
-          const textRowIndex = r - lineStartRow;
-          if (!cell && textRowIndex >= 0 && textRowIndex < lines.length) {
-            const line = lines[textRowIndex] ?? '';
-            const visibleLine =
-              line.length > frameInnerWidth ? line.slice(0, frameInnerWidth) : line;
-            const start = Math.floor((cols - visibleLine.length) / 2);
-            const rel = c - start;
-            if (rel >= 0 && rel < visibleLine.length) {
-              const char = visibleLine[rel] ?? ' ';
+          const placement = placements.get(r);
+          if (!cell && placement) {
+            const rel = c - placement.start;
+            if (rel >= 0 && rel < placement.text.length) {
+              const char = placement.text[rel] ?? ' ';
+              const emphasis = textMode === 'spray' || effectProfile === 'shockwave';
               cell = {
                 char,
-                weight: textRowIndex === 0 ? 800 : 500,
-                style: textRowIndex === 2 ? 'italic' : 'normal',
-                alpha: textRowIndex === 0 ? 10 : 9,
+                weight: placement.index === 0 || emphasis ? 800 : 500,
+                style:
+                  placement.index === 2 || (textMode === 'spray' && placement.index === 1)
+                    ? 'italic'
+                    : 'normal',
+                alpha: placement.index === 0 ? 10 : emphasis ? 10 : 9,
               };
             }
           }
 
-          if (!cell && Math.abs(c - objectX) <= 1 && Math.abs(r - objectY) <= 1) {
-            cell = {
-              char: '@',
-              weight: 800,
-              style: 'normal',
-              alpha: 10,
-            };
+          if (!cell) {
+            const actor = actorCell(actorMode, c - objectX, r - objectY, sceneProgress);
+            if (actor) {
+              cell = actor;
+            }
           }
 
           if (!cell) {
@@ -460,14 +687,14 @@ export function AsciiCinematicPlayer({
       }
 
       if (sceneEl) {
-        sceneEl.textContent = `${sceneLabel} :: PASSIVE AUTOPLAY`;
+        sceneEl.textContent = `${sceneLabel} :: ${actorMode.toUpperCase()} :: ${textMode.toUpperCase()}`;
       }
 
       if (progressEl) {
         progressEl.style.width = `${Math.round(sceneProgress * 100)}%`;
       }
 
-      statsEl.textContent = `${cols}x${rows} | cycle ${Math.round(cycleProgress * 100)}% | ${fps} fps`;
+      statsEl.textContent = `${cols}x${rows} | ${effectProfile} | cycle ${Math.round(cycleProgress * 100)}% | ${fps} fps`;
     }
 
     initGrid();
@@ -477,8 +704,29 @@ export function AsciiCinematicPlayer({
       for (let i = 0; i < 18; i += 1) {
         updateSimulation(i * 30);
       }
-      const object = objectPosition(0, 0.35, cols, rows, snapshot.scene.objectAmplitude);
-      renderFrame(0, 0, object.x, object.y, snapshot.scene.label, 0, 0, snapshot.scene.lines);
+      const object = objectPosition(
+        0,
+        0.35,
+        cols,
+        rows,
+        snapshot.scene.objectAmplitude,
+        snapshot.scene.actorMode,
+        snapshot.scene.intensity,
+      );
+      renderFrame(
+        0,
+        0,
+        object.x,
+        object.y,
+        snapshot.scene.label,
+        0,
+        0,
+        snapshot.scene.lines,
+        snapshot.scene.actorMode,
+        snapshot.scene.effectProfile,
+        snapshot.scene.textMode,
+        snapshot.scene.intensity,
+      );
       statsEl.textContent = `${cols}x${rows} | reduced motion mode`;
       return;
     }
@@ -529,6 +777,10 @@ export function AsciiCinematicPlayer({
         state.sceneProgress,
         state.cycleProgress,
         state.lines,
+        state.actorMode,
+        state.effectProfile,
+        state.textMode,
+        state.intensity,
       );
 
       rafId = window.requestAnimationFrame(render);
