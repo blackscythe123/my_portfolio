@@ -3,15 +3,31 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Light Mode Defaults */
-  --background: #f6ede1;
-  --foreground: #171717;
-  --primary: #037dd6;
-  --secondary: #f6851b;
-  --card: #f3f4f6;
-  --border: #e5e7eb;
-  
-  /* Additional colors */
+  /* Zoku Cinema palette */
+  --ink-navy: #0e1b3a;
+  --ink-deep: #06112a;
+  --cherry: #dc1c2e;
+  --sodium: #ffe83a;
+  --magenta: #ff3d8a;
+  --bone: #f4ede1;
+  --bone-deep: #ddd5c5;
+  --char: #0a0a0a;
+
+  /* Semantic tokens (dark-native; bone scenes opt in via section bg) */
+  --background: var(--ink-navy);
+  --foreground: var(--bone);
+  --primary: var(--sodium);
+  --secondary: var(--cherry);
+  --accent: var(--magenta);
+  --card: var(--ink-deep);
+  --border: rgba(244, 237, 225, 0.12);
+
+  /* Font variables */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Legacy color slots (kept for any stragglers) */
   --color-blue-500: #3b82f6;
   --color-purple-500: #a855f7;
   --color-green-500: #22c55e;
@@ -19,13 +35,14 @@
 }
 
 .dark {
-  /* Dark Mode Overrides */
-  --background: #0a0a0a;
-  --foreground: #f3f4f6;
-  --primary: #037dd6;
-  --secondary: #f6851b;
-  --card: #1e1e1e;
-  --border: rgba(255, 255, 255, 0.1);
+  /* Same tokens — design is dark-native; bone scenes opt in by section bg */
+  --background: var(--ink-navy);
+  --foreground: var(--bone);
+  --primary: var(--sodium);
+  --secondary: var(--cherry);
+  --accent: var(--magenta);
+  --card: var(--ink-deep);
+  --border: rgba(244, 237, 225, 0.12);
 }
 
 @theme inline {
@@ -33,17 +50,41 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --color-card: var(--card);
   --color-border: var(--border);
-  
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'Fira Code', monospace;
 
+  /* Direct palette colors so utilities like `bg-cherry`, `text-sodium` resolve */
+  --color-ink: var(--ink-navy);
+  --color-ink-navy: var(--ink-navy);
+  --color-ink-deep: var(--ink-deep);
+  --color-cherry: var(--cherry);
+  --color-sodium: var(--sodium);
+  --color-magenta: var(--magenta);
+  --color-bone: var(--bone);
+  --color-bone-deep: var(--bone-deep);
+  --color-char: var(--char);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Legacy animations (preserved — other components reference these) */
   --animate-blob: blob 7s infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-spin-slow: spin 12s linear infinite;
   --animate-pulse-glow: pulse-glow 3s infinite;
   --animate-bounce-slight: bounce-slight 2s infinite;
+
+  /* New Zoku motion utilities */
+  --animate-h-wave: h-wave 7s ease-in-out infinite;
+  --animate-h-drift-l: h-drift-l 18s ease-in-out infinite alternate;
+  --animate-h-drift-r: h-drift-r 22s ease-in-out infinite alternate;
+  --animate-h-drift-b: h-drift-b 26s ease-in-out infinite alternate;
+  --animate-h-spin-slow: h-spin 22s linear infinite;
+  --animate-h-spin-fast: h-spin 9s linear infinite;
+  --animate-h-bob: h-bob 2.2s ease-in-out infinite;
+  --animate-h-pulse-pip: h-pulse-pip 1.6s ease-in-out infinite;
 
   @keyframes blob {
     0% { transform: translate(0px, 0px) scale(1); }
@@ -70,11 +111,173 @@
 
 /* Base Styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--ink-navy);
+  color: var(--bone);
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
+
+/* ============================================================
+   ZOKU CINEMA — Hero (Tile H) keyframes
+   ============================================================ */
+@keyframes h-wave {
+  0%, 100% { transform: skew(0deg, 0deg); }
+  25% { transform: skew(-0.5deg, -1deg); }
+  75% { transform: skew(0.5deg, 1deg); }
+}
+
+@keyframes h-drift-l {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate(50px, -30px) rotate(10deg) scale(1.1); }
+}
+
+@keyframes h-drift-r {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate(-50px, -30px) rotate(-10deg) scale(1.1); }
+}
+
+@keyframes h-drift-b {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -40px) scale(1.2); }
+}
+
+@keyframes h-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes h-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes h-pulse-pip {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+@keyframes s2-pulse {
+  0% { opacity: 0.85; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes s4-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-s4-spin {
+  animation: s4-spin 22s linear infinite;
+}
+
+/* ============================================================
+   ZOKU CINEMA — Utility classes
+   ============================================================ */
+.zoku-wordmark {
+  font-family: var(--font-display);
+  font-variation-settings: 'wght' 800, 'wdth' 100, 'opsz' 96;
+  font-style: italic;
+  font-size: clamp(64px, 12vw, 200px);
+  line-height: 0.84;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: var(--bone);
+  text-shadow:
+    6px 8px 0 rgba(220, 28, 46, 0.55),
+    -2px -2px 0 rgba(255, 232, 58, 0.18),
+    0 30px 60px rgba(0, 0, 0, 0.5);
+  animation: h-wave 7s ease-in-out infinite;
+}
+
+.zoku-play-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: var(--sodium);
+  color: var(--ink-navy);
+  border: 3px solid var(--ink-navy);
+  font-family: var(--font-display);
+  font-variation-settings: 'wght' 800, 'wdth' 100;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 0 var(--cherry), 12px 12px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+
+.zoku-play-pill:hover {
+  background: var(--magenta);
+  color: var(--bone);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--cherry), 18px 18px 0 rgba(0, 0, 0, 0.5);
+}
+
+.zoku-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3' seed='12'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.97 0 0 0 0 0.92 0 0 0 0.12 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+.cloud-blob {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.92;
+  filter: blur(1.5px) drop-shadow(0 0 40px rgba(220, 28, 46, 0.45));
+}
+
+.zoku-slice {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    var(--cherry) 30%,
+    var(--sodium) 50%,
+    var(--magenta) 70%,
+    transparent 95%
+  );
+  transform: rotate(-2.5deg);
+  filter: blur(0.5px);
+  box-shadow: 0 0 12px rgba(220, 28, 46, 0.5);
+}
+
+.zoku-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.zoku-comic-shadow-sodium {
+  box-shadow: 4px 4px 0 var(--sodium), 8px 8px 0 var(--char);
+}
+
+.zoku-comic-shadow-cherry {
+  box-shadow: 4px 4px 0 var(--cherry), 8px 8px 0 var(--char);
+}
+
+.zoku-comic-shadow-magenta {
+  box-shadow: 4px 4px 0 var(--magenta), 8px 8px 0 var(--char);
+}
+
+.zoku-pip {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sodium);
+  box-shadow: 0 0 8px var(--sodium);
+  animation: h-pulse-pip 1.6s ease-in-out infinite;
+}
+
+/* ============================================================
+   Preserved utilities (other components reference these)
+   ============================================================ */
 
 /* Glassmorphism */
 .glass-panel {
@@ -91,7 +294,7 @@ body {
 ::-webkit-scrollbar { height: 8px; width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+::-webkit-scrollbar-thumb:hover { background: var(--sodium); }
 
 /* Animation Classes for Scroll Observer */
 .reveal-section { opacity: 0; transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -104,7 +307,7 @@ body {
 /* Horizontal Scroll Snap (PPT Effect) */
 .snap-container {
   -ms-overflow-style: none;
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
 .snap-container::-webkit-scrollbar { display: none; }
 
@@ -144,10 +347,10 @@ body {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { 
+  0%, 100% {
     box-shadow: 0 0 20px rgba(3, 125, 214, 0.3);
   }
-  50% { 
+  50% {
     box-shadow: 0 0 40px rgba(3, 125, 214, 0.6), 0 0 60px rgba(3, 125, 214, 0.3);
   }
 }
@@ -207,7 +410,7 @@ body {
   position: fixed;
   width: 20px;
   height: 20px;
-  background: rgba(3, 125, 214, 0.5);
+  background: rgba(255, 232, 58, 0.5);
   border-radius: 50%;
   z-index: 9999;
   transition: transform 0.05s linear;
@@ -267,12 +470,21 @@ html {
 
 /* Selection styling */
 ::selection {
-  background: rgba(3, 125, 214, 0.2);
-  color: inherit;
+  background: var(--cherry);
+  color: var(--bone);
 }
 
 /* Focus styles for accessibility */
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--sodium);
   outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

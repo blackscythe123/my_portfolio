@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 interface Project {
   title: string;
@@ -10,11 +11,48 @@ interface Project {
   tags: string[];
   link: string;
   active: boolean;
+  language: string;
+  stars: number;
 }
 
 interface ProjectListProps {
   projects: Project[];
 }
+
+const ACCENTS = [
+  {
+    border: 'border-sodium',
+    text: 'text-sodium',
+    bg: 'bg-sodium',
+    shadow: '4px 4px 0 #ffe83a',
+    shadowHover: '8px 8px 0 #ffe83a',
+    glow: 'rgba(255,232,58,0.4)',
+  },
+  {
+    border: 'border-cherry',
+    text: 'text-cherry',
+    bg: 'bg-cherry',
+    shadow: '4px 4px 0 #dc1c2e',
+    shadowHover: '8px 8px 0 #dc1c2e',
+    glow: 'rgba(220,28,46,0.4)',
+  },
+  {
+    border: 'border-magenta',
+    text: 'text-magenta',
+    bg: 'bg-magenta',
+    shadow: '4px 4px 0 #ff3d8a',
+    shadowHover: '8px 8px 0 #ff3d8a',
+    glow: 'rgba(255,61,138,0.4)',
+  },
+  {
+    border: 'border-[#5be9ff]',
+    text: 'text-[#5be9ff]',
+    bg: 'bg-[#5be9ff]',
+    shadow: '4px 4px 0 #5be9ff',
+    shadowHover: '8px 8px 0 #5be9ff',
+    glow: 'rgba(91,233,255,0.4)',
+  },
+];
 
 export function ProjectList({ projects }: ProjectListProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,82 +75,130 @@ export function ProjectList({ projects }: ProjectListProps) {
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className='relative w-full max-w-7xl mx-auto py-8 md:py-12 overflow-hidden'
-    >
-      <div className='pointer-events-none absolute inset-0 flex justify-center'>
-        <div className='w-px h-full bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800' />
+  if (!projects || projects.length === 0) {
+    return (
+      <div className='text-center py-20'>
+        <p className='font-mono text-bone/70 text-sm uppercase tracking-[0.18em] mb-6'>
+          &middot; INDEX OFFLINE &middot;
+        </p>
+        <Link
+          href='https://github.com/blackscythe123'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='zoku-play-pill'
+        >
+          <span>▶</span> SCOUT THE GITHUB
+        </Link>
       </div>
+    );
+  }
 
-      <div className='flex flex-col gap-0'>
+  return (
+    <div ref={containerRef} className='w-full'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5'>
         {projects.map((project, index) => {
-          const isRight = index % 2 !== 0;
+          const accent = ACCENTS[index % ACCENTS.length];
+          const num = String(index + 1).padStart(2, '0');
           return (
-            <article
-              key={index}
-              className='fade-up opacity-0 translate-y-6 transition-all duration-700 border-t border-gray-200 dark:border-gray-800 group hover:bg-gray-100/80 dark:hover:bg-gray-900/60'
-              style={{ transitionDelay: `${index * 120}ms` }}
+            <motion.a
+              key={project.title}
+              href={project.link}
+              target='_blank'
+              rel='noopener noreferrer'
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.05 + (index % 4) * 0.08,
+              }}
+              whileHover={{ y: -6 }}
+              className={`group relative border-2 ${accent.border} bg-ink-deep/70 backdrop-blur-md p-4 flex flex-col gap-2 min-h-[220px] transition-shadow cursor-pointer no-underline`}
+              style={{ boxShadow: accent.shadow }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = accent.shadowHover;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = accent.shadow;
+              }}
             >
+              {/* active pip */}
+              {project.active && (
+                <span
+                  className='absolute top-3 right-3 w-2 h-2 rounded-full bg-sodium'
+                  style={{
+                    boxShadow: '0 0 8px #ffe83a',
+                    animation: 'h-pulse-pip 1.6s ease-in-out infinite',
+                  }}
+                />
+              )}
+
+              {/* big number */}
               <div
-                className={`relative px-4 sm:px-6 md:px-10 lg:px-14 py-10 md:py-14 flex ${isRight ? 'justify-end' : 'justify-start'}`}
+                className={`font-display font-extrabold ${accent.text} leading-[0.86] tracking-tight`}
+                style={{ fontSize: 48 }}
               >
-                {/* node on the vine */}
-                <span className='pointer-events-none absolute top-12 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white dark:bg-[#0a0a0a] border border-gray-300 dark:border-gray-700 shadow-sm' />
-
-                <div
-                  className={`max-w-5xl w-full flex flex-col gap-5 ${isRight ? 'lg:pl-24 lg:text-right lg:items-end' : 'lg:pr-24 lg:text-left lg:items-start'}`}
-                >
-                  <div className={`flex items-center gap-3 text-[11px] md:text-xs uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400 ${isRight ? 'justify-end' : 'justify-start'}`}>
-                    <span className='font-mono'>{String(index + 1).padStart(2, '0')}</span>
-                    <span className='hidden sm:inline'>{project.subtitle}</span>
-                    {project.active && (
-                      <span className='inline-flex items-center gap-1 text-[11px] text-green-600 dark:text-green-400'>
-                        <span className='w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse' />
-                        Active
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={`flex flex-col ${isRight ? 'items-end text-right' : 'items-start text-left'} gap-3`}>
-                    <Link
-                      href={project.link}
-                      target='_blank'
-                      className='group/link inline-flex items-center gap-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-[0.95] text-gray-900 dark:text-white transition-colors duration-300'
-                    >
-                      {project.title}
-                      <svg
-                        className='w-6 h-6 opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        stroke='currentColor'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeWidth={2}
-                          d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
-                        />
-                      </svg>
-                    </Link>
-
-                    <p
-                      className={`text-sm md:text-base text-gray-600 dark:text-gray-300 max-w-2xl transition-all duration-500 ${isRight ? 'md:text-right md:translate-x-6' : 'md:text-left md:-translate-x-6'} opacity-100 md:opacity-0 translate-x-0 md:group-hover:opacity-100 md:group-hover:translate-x-0`}
-                    >
-                      {project.description}
-                    </p>
-
-                    <p className='text-xs md:text-sm text-gray-400 dark:text-gray-500 tracking-wide'>
-                      {project.tags.join(' · ')}
-                    </p>
-                  </div>
-                </div>
+                {num}
               </div>
-            </article>
+
+              {/* visual teaser */}
+              <div
+                className='h-14 relative overflow-hidden'
+                style={{
+                  background: `radial-gradient(circle at 40% 60%, ${accent.glow} 0%, transparent 60%), linear-gradient(135deg, rgba(0,0,0,0.4) 0%, transparent 60%)`,
+                  opacity: 0.85,
+                }}
+              >
+                <span
+                  className={`absolute top-1 right-2 font-mono text-[10px] uppercase tracking-[0.18em] ${accent.text}`}
+                >
+                  &gt; {project.language}
+                </span>
+              </div>
+
+              {/* title */}
+              <h3 className='font-display font-extrabold uppercase text-bone text-[13px] leading-tight tracking-[0.04em] line-clamp-2'>
+                {project.title}
+              </h3>
+
+              {/* description tiny */}
+              <p className='font-sans text-bone/55 text-[11px] leading-snug line-clamp-2'>
+                {project.description}
+              </p>
+
+              {/* meta */}
+              <div className='mt-auto flex items-center justify-between'>
+                <span className='font-mono text-[9px] tracking-[0.18em] uppercase text-bone/55'>
+                  &#9733; {project.stars}
+                </span>
+                <span
+                  className={`font-mono text-[9px] tracking-[0.22em] uppercase ${accent.text}`}
+                >
+                  {project.active ? '● LIVE' : 'ARCHIVE'}
+                </span>
+              </div>
+
+              {/* play button */}
+              <div
+                className={`${accent.bg} text-ink-navy font-display font-extrabold text-center py-1.5 text-[10px] uppercase tracking-[0.22em] mt-1 group-hover:opacity-100 transition`}
+              >
+                ▶ PLAY
+              </div>
+            </motion.a>
           );
         })}
-        <div className='border-t border-gray-200 dark:border-gray-800' />
+      </div>
+
+      <div className='mt-12 flex justify-center'>
+        <Link
+          href='https://github.com/blackscythe123'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='font-mono text-xs uppercase tracking-[0.22em] text-bone/65 hover:text-sodium transition flex items-center gap-2 border-b border-bone/20 hover:border-sodium pb-1'
+        >
+          VIEW ALL ON GITHUB <span className='text-sodium'>↗</span>
+        </Link>
       </div>
     </div>
   );

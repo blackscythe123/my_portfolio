@@ -1,15 +1,24 @@
 import type { Metadata } from 'next';
-import { Inter, Fira_Code } from 'next/font/google';
+import { Bricolage_Grotesque, Inter_Tight, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
-  variable: '--font-sans',
+const bricolage = Bricolage_Grotesque({
+  variable: '--font-display',
   subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
 });
 
-const firaCode = Fira_Code({
+const interTight = Inter_Tight({
+  variable: '--font-sans',
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+});
+
+const jetbrains = JetBrains_Mono({
   variable: '--font-mono',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -24,15 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='scroll-smooth'>
-      <head>
-        <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0' rel='stylesheet' />
-      </head>
       <body
-        className={`${inter.variable} ${firaCode.variable} antialiased bg-background text-foreground font-sans`}
+        className={`${bricolage.variable} ${interTight.variable} ${jetbrains.variable} antialiased bg-background text-foreground font-sans`}
       >
         {children}
       </body>
     </html>
   );
 }
-

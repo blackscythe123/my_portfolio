@@ -1,105 +1,240 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
+  // Mouse parallax — track normalized 0..1 across the section,
+  // then map to a small +/- px translation on the wordmark.
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const rawX = useTransform(mouseX, [0, 1], [-14, 14]);
+  const rawY = useTransform(mouseY, [0, 1], [-8, 8]);
+  // Spring-smooth so the wordmark doesn't snap with each event.
+  const wordmarkX = useSpring(rawX, { stiffness: 90, damping: 18, mass: 0.6 });
+  const wordmarkY = useSpring(rawY, { stiffness: 90, damping: 18, mass: 0.6 });
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll('.fade-up');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+    const section = sectionRef.current;
+    if (!section) return;
+    const handleMove = (e: MouseEvent) => {
+      const rect = section.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.left) / rect.width);
+      mouseY.set((e.clientY - rect.top) / rect.height);
+    };
+    section.addEventListener('mousemove', handleMove);
+    return () => section.removeEventListener('mousemove', handleMove);
+  }, [mouseX, mouseY]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id='about' 
-      className='min-h-screen flex items-start lg:items-center bg-white dark:bg-[#0a0a0a] relative overflow-hidden pt-10 sm:pt-12 lg:pt-14'
+      id="about"
+      className="zoku-section flex items-center justify-center bg-ink relative overflow-hidden"
     >
-      {/* Subtle grid background */}
-      <div className='absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]' />
-      
-      <div className='relative z-10 w-full'>
-        <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-14 md:py-18'>
-          {/* Left Column: Name + Avatar + Status */}
-          <div className='flex flex-col items-start justify-center order-1'>
-            <div className='fade-up opacity-0 translate-y-4 transition-all duration-700'>
-              <div className='mb-4 sm:mb-6 md:mb-8'>
-                <Image
-                  src='https://github.com/blackscythe123.png'
-                  alt='Simiyon Vinscent Samuel'
-                  width={140}
-                  height={140}
-                  className='w-20 md:w-28 lg:w-[140px] h-20 md:h-28 lg:h-[140px] object-cover rounded-lg border border-gray-200 dark:border-gray-800'
-                />
-              </div>
-              <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-gray-900 dark:text-white leading-[1.05] mb-3 sm:mb-4 md:mb-6 max-w-xl break-words'>
-                Simiyon Vinscent Samuel L
-              </h1>
-              <div className='flex items-center gap-2 md:gap-3'>
-                <span className='relative flex h-2 w-2'>
-                  <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75'></span>
-                  <span className='relative inline-flex rounded-full h-2 w-2 bg-green-500'></span>
-                </span>
-                <span className='text-xs md:text-sm text-gray-600 dark:text-gray-400'>Available for work</span>
-              </div>
-            </div>
-          </div>
+      {/* === PAINTERLY CLOUD BLOBS (z-1) === */}
+      <div
+        className="cloud-blob animate-h-drift-l absolute z-[1] pointer-events-none"
+        style={{ width: 520, height: 520, top: -60, left: -120 }}
+        aria-hidden
+      >
+        <svg viewBox="0 0 200 200" preserveAspectRatio="none" className="h-full w-full">
+          <path
+            fill="#dc1c2e"
+            d="M40,80 C20,60 30,30 60,30 C70,10 110,10 120,30 C150,20 180,50 170,80 C190,90 180,130 150,130 C140,160 100,170 80,150 C50,160 20,130 40,100 Z"
+          />
+          <path
+            fill="#ff3d8a"
+            opacity="0.6"
+            d="M60,90 C45,75 60,55 80,55 C90,45 115,45 120,60 C140,55 155,80 145,95 C155,115 130,135 110,125 C90,140 65,125 60,105 Z"
+          />
+        </svg>
+      </div>
 
-          {/* Right Column: Description + CTA */}
-          <div className='flex flex-col items-start justify-center order-2 lg:order-2'>
-            <div className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-100'>
-              <p className='text-[11px] sm:text-xs md:text-sm tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-3 sm:mb-4 md:mb-6'>
-                Engineering Student & Developer — India
-              </p>
-              <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-light text-gray-900 dark:text-white leading-tight mb-4 sm:mb-6 md:mb-8 max-w-2xl'>
-                I build intelligent systems at the intersection of <span className='font-semibold'>automation</span>, <span className='font-semibold'>web3</span>, and <span className='font-semibold'>full-stack development</span>.
-              </h2>
-              <p className='text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6 sm:mb-8 md:mb-10 max-w-2xl'>
-                Crafting robust, scalable solutions—from low-level automation scripts to production-ready web applications. Currently exploring decentralized systems and AI-powered workflows.
-              </p>
-              
-              <div className='flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4'>
-                <Link
-                  href='#projects'
-                  className='inline-flex items-center justify-center sm:justify-start gap-2 px-5 md:px-6 py-2.5 md:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs md:text-sm font-medium hover:opacity-80 transition-opacity'
-                >
-                  View my work
-                  <svg className='w-3.5 h-3.5 md:w-4 md:h-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 14l-7 7m0 0l-7-7m7 7V3' />
-                  </svg>
-                </Link>
-                <Link
-                  href='https://github.com/blackscythe123'
-                  target='_blank'
-                  className='inline-flex items-center justify-center sm:justify-start gap-2 px-5 md:px-6 py-2.5 md:py-3 text-gray-600 dark:text-gray-400 text-xs md:text-sm font-medium hover:text-gray-900 dark:hover:text-white transition-colors'
-                >
-                  GitHub
-                  <svg className='w-3.5 h-3.5 md:w-4 md:h-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14' />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
+      <div
+        className="cloud-blob animate-h-drift-r absolute z-[1] pointer-events-none"
+        style={{ width: 540, height: 540, bottom: -120, right: -120 }}
+        aria-hidden
+      >
+        <svg viewBox="0 0 200 200" preserveAspectRatio="none" className="h-full w-full">
+          <path
+            fill="#dc1c2e"
+            d="M50,90 C30,70 40,40 70,40 C80,20 120,20 130,40 C155,30 185,60 170,90 C190,105 175,140 145,135 C135,165 95,170 75,150 C45,155 20,125 50,100 Z"
+          />
+          <path
+            fill="#ff3d8a"
+            opacity="0.55"
+            d="M70,100 C55,85 70,65 90,68 C100,55 125,55 130,72 C150,68 165,90 150,105 C160,125 135,140 115,130 C95,145 70,130 65,110 Z"
+          />
+        </svg>
+      </div>
+
+      <div
+        className="cloud-blob animate-h-drift-b absolute z-[1] pointer-events-none opacity-60"
+        style={{ width: 360, height: 360, bottom: -240, left: '20%' }}
+        aria-hidden
+      >
+        <svg viewBox="0 0 200 200" preserveAspectRatio="none" className="h-full w-full">
+          <path
+            fill="#dc1c2e"
+            d="M40,100 C25,80 40,55 70,60 C80,40 120,40 130,60 C160,55 175,85 160,105 C175,125 150,150 125,140 C105,155 75,145 65,125 C40,130 25,115 40,100 Z"
+          />
+        </svg>
+      </div>
+
+      {/* === MAGENTA STAR BURSTS (z-2) === */}
+      <span
+        className="absolute z-[2] pointer-events-none animate-h-spin-fast"
+        style={{ top: '22%', left: '12%', width: 60, height: 60 }}
+        aria-hidden
+      >
+        <svg
+          viewBox="-50 -50 100 100"
+          className="h-full w-full"
+          style={{ filter: 'drop-shadow(0 0 8px rgba(255,61,138,0.5))' }}
+        >
+          <polygon
+            points="0,-40 9,-12 38,-12 14,5 23,32 0,15 -23,32 -14,5 -38,-12 -9,-12"
+            fill="#ff3d8a"
+          />
+        </svg>
+      </span>
+
+      <span
+        className="absolute z-[2] pointer-events-none animate-h-spin-slow"
+        style={{ top: '68%', right: '18%', width: 40, height: 40 }}
+        aria-hidden
+      >
+        <svg
+          viewBox="-50 -50 100 100"
+          className="h-full w-full"
+          style={{ filter: 'drop-shadow(0 0 8px rgba(255,61,138,0.5))' }}
+        >
+          <polygon
+            points="0,-40 9,-12 38,-12 14,5 23,32 0,15 -23,32 -14,5 -38,-12 -9,-12"
+            fill="#ff3d8a"
+          />
+        </svg>
+      </span>
+
+      <span
+        className="absolute z-[2] pointer-events-none animate-h-spin-fast"
+        style={{ top: '12%', right: '10%', width: 32, height: 32 }}
+        aria-hidden
+      >
+        <svg
+          viewBox="-50 -50 100 100"
+          className="h-full w-full"
+          style={{ filter: 'drop-shadow(0 0 8px rgba(255,61,138,0.5))' }}
+        >
+          <polygon
+            points="0,-40 9,-12 38,-12 14,5 23,32 0,15 -23,32 -14,5 -38,-12 -9,-12"
+            fill="#ff3d8a"
+          />
+        </svg>
+      </span>
+
+      {/* === FILM GRAIN OVERLAY === */}
+      <div className="zoku-grain absolute inset-0 pointer-events-none z-[3]" aria-hidden />
+
+      {/* === MAIN CONTENT === */}
+      <div className="relative z-10 max-w-5xl text-center flex flex-col items-center gap-4 px-6">
+        {/* overline — sodium horizontal flank lines via spans */}
+        <div className="flex items-center gap-3.5">
+          <span
+            aria-hidden
+            className="block h-px w-9"
+            style={{
+              background: 'linear-gradient(90deg, transparent, #ffe83a)',
+              boxShadow: '0 0 8px rgba(255,232,58,0.5)',
+            }}
+          />
+          <p className="font-sans font-bold uppercase tracking-[0.3em] text-sodium text-[11px] md:text-xs">
+            A MULTIMEDIA ENGINEER &middot; CHENNAI &middot; &apos;26
+          </p>
+          <span
+            aria-hidden
+            className="block h-px w-9"
+            style={{
+              background: 'linear-gradient(90deg, #ffe83a, transparent)',
+              boxShadow: '0 0 8px rgba(255,232,58,0.5)',
+            }}
+          />
+        </div>
+
+        {/* wavy wordmark — parallax via framer-motion */}
+        <motion.h1
+          className="zoku-wordmark"
+          style={{ x: wordmarkX, y: wordmarkY }}
+        >
+          SIMIYON
+        </motion.h1>
+
+        {/* tag */}
+        <p className="font-display font-bold uppercase tracking-[0.3em] text-bone text-xs md:text-sm mt-2">
+          BUILD YOUR SYSTEM.{' '}
+          <em className="not-italic text-sodium [text-shadow:0_0_18px_rgba(255,232,58,0.6)]">
+            TAKE A SIDE.
+          </em>
+        </p>
+
+        {/* CTA */}
+        <div className="flex gap-4 mt-6">
+          <Link href="#projects" className="zoku-play-pill">
+            OPEN THE INDEX <span>▶</span>
+          </Link>
         </div>
       </div>
+
+      {/* === PORTRAIT INSET CARD === */}
+      <div
+        className="absolute z-20 zoku-comic-shadow-cherry hidden md:block"
+        style={{
+          bottom: 128,
+          left: 80,
+          width: 110,
+          height: 140,
+          border: '2px solid #ffe83a',
+          background: 'linear-gradient(180deg, #dc1c2e 0%, #5a1230 40%, #0e1b3a 100%)',
+          overflow: 'hidden',
+        }}
+      >
+        <Image
+          src="https://github.com/blackscythe123.png"
+          alt="Simiyon"
+          width={130}
+          height={170}
+          unoptimized
+          className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity opacity-90"
+        />
+        <div
+          className="absolute left-1/2 -translate-x-1/2 bg-sodium text-ink font-display font-extrabold uppercase tracking-[0.14em]"
+          style={{
+            bottom: 8,
+            padding: '4px 8px',
+            fontSize: 9,
+            zIndex: 2,
+          }}
+        >
+          SVS &middot; 01
+        </div>
+      </div>
+
+      {/* === DIAGONAL SLICE LINE === */}
+      <div
+        className="zoku-slice absolute z-[5]"
+        style={{ left: -50, right: -50, bottom: 128 }}
+        aria-hidden
+      />
+
+      {/* === SCROLL HINT === */}
+      <p className="absolute bottom-16 left-1/2 -translate-x-1/2 font-display font-bold tracking-[0.3em] uppercase text-bone/70 text-[10px] animate-h-bob z-10">
+        SCROLL TO ENTER <span className="text-sodium">↓</span>
+      </p>
     </section>
   );
 }
-

@@ -2,6 +2,8 @@ import {
   Hero,
   Navigation,
   Skills,
+  Notes,
+  Craft,
   Projects,
   Contact,
 } from '@/components';
@@ -42,10 +44,12 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background relative overflow-x-hidden">
+    <main className='min-h-screen bg-background relative overflow-x-hidden'>
       <Navigation />
       <Hero />
       <Skills />
+      <Notes />
+      <Craft />
       <Projects />
       <Contact />
     </main>

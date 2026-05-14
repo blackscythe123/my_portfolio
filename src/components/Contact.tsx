@@ -2,9 +2,21 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const SOCIALS = [
+  { label: 'G', title: 'GitHub', href: 'https://github.com/blackscythe123' },
+  {
+    label: 'in',
+    title: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/simiyonvinscentsamuel/',
+  },
+  { label: 'x', title: 'X / Twitter', href: '#' },
+  { label: 'D', title: 'Discord', href: '#' },
+];
 
 export function Contact() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,86 +29,157 @@ export function Contact() {
       },
       { threshold: 0.1 }
     );
-
-    const elements = sectionRef.current?.querySelectorAll('.fade-up');
+    const elements = ref.current?.querySelectorAll('.fade-up');
     elements?.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 
   return (
-    <footer 
-      ref={sectionRef}
-      id='contact' 
-      className='py-10 md:py-16 lg:py-18 bg-gray-50 dark:bg-[#0a0a0a] relative'
+    <footer
+      ref={ref}
+      id='contact'
+      className='zoku-section relative overflow-hidden flex flex-col items-center justify-center py-24 px-6'
+      style={{
+        minHeight: '80vh',
+        background:
+          'radial-gradient(ellipse 1000px 500px at 50% 0%, rgba(220,28,46,0.18), transparent 60%),' +
+          'radial-gradient(ellipse 700px 350px at 50% 100%, rgba(255,232,58,0.10), transparent 60%),' +
+          '#06112a',
+      }}
     >
-      <div className='max-w-3xl mx-auto px-4 sm:px-6'>
-        {/* Main CTA */}
-        <div className='mb-10 md:mb-12'>
-          <p className='fade-up opacity-0 translate-y-4 transition-all duration-700 text-xs sm:text-sm tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-4 sm:mb-5'>
-            Get in Touch
-          </p>
-          <h2 className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-100 text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 dark:text-white leading-tight mb-6 sm:mb-7'>
-            Have a project in mind?<br />
-            <span className='font-semibold'>Let&apos;s build something together.</span>
-          </h2>
-          <p className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-200 text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 sm:mb-9 max-w-xl'>
-            I&apos;m always open to discussing new opportunities, interesting projects, or just having a conversation about technology and design.
-          </p>
-          
-          {/* Primary CTA */}
-          <div className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-300'>
+      {/* corner stars */}
+      <span
+        className='absolute pointer-events-none z-[2] animate-h-spin-slow'
+        style={{ top: '12%', left: '8%', width: 40, height: 40 }}
+        aria-hidden
+      >
+        <svg viewBox='-50 -50 100 100' className='h-full w-full'>
+          <polygon
+            points='0,-40 9,-12 38,-12 14,5 23,32 0,15 -23,32 -14,5 -38,-12 -9,-12'
+            fill='#ff3d8a'
+          />
+        </svg>
+      </span>
+      <span
+        className='absolute pointer-events-none z-[2] animate-h-spin-fast'
+        style={{ bottom: '14%', right: '10%', width: 32, height: 32 }}
+        aria-hidden
+      >
+        <svg viewBox='-50 -50 100 100' className='h-full w-full'>
+          <polygon
+            points='0,-40 9,-12 38,-12 14,5 23,32 0,15 -23,32 -14,5 -38,-12 -9,-12'
+            fill='#ffe83a'
+          />
+        </svg>
+      </span>
+
+      <div className='relative z-10 max-w-3xl w-full text-center flex flex-col items-center gap-6'>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className='font-mono text-[11px] tracking-[0.3em] uppercase text-bone/55 flex items-center gap-3'
+        >
+          <span className='block w-7 h-px bg-cherry' />
+          CHAPTER 04 &middot; REACH
+          <span className='block w-7 h-px bg-cherry' />
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className='font-display font-extrabold uppercase text-bone text-4xl md:text-5xl lg:text-6xl leading-none tracking-tight'
+          style={{ textShadow: '4px 4px 0 #dc1c2e, 8px 8px 0 rgba(0,0,0,0.45)' }}
+        >
+          WANT IN ON{' '}
+          <em
+            className='not-italic text-sodium italic'
+            style={{ textShadow: '4px 4px 0 #0a0a0a' }}
+          >
+            THE SAGA?
+          </em>
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+          className='font-sans text-bone/75 text-base md:text-lg leading-relaxed max-w-xl'
+        >
+          Open commissions. Automation &middot; web3 &middot; full-stack. Drop a transmission &mdash; I read every signal.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+          className='mt-4'
+        >
+          <Link
+            href='mailto:samsamuel234567@gmail.com'
+            className='zoku-play-pill'
+            style={{ fontSize: 14 }}
+          >
+            <span>▶</span> SEND A TRANSMISSION
+          </Link>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className='font-mono text-xs tracking-[0.14em] uppercase text-bone/55 break-all md:break-normal'
+        >
+          samsamuel234567@gmail.com
+        </motion.p>
+
+        {/* social row */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.7 }}
+          className='flex gap-3 mt-2'
+        >
+          {SOCIALS.map((s) => (
             <Link
-              href='mailto:samsamuel234567@gmail.com'
-              className='inline-flex items-center gap-3 text-lg sm:text-xl md:text-2xl font-medium text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors group break-words'
-            >
-              samsamuel234567@gmail.com
-              <svg 
-                className='w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all' 
-                fill='none' 
-                viewBox='0 0 24 24' 
-                stroke='currentColor'
-              >
-                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M14 5l7 7m0 0l-7 7m7-7H3' />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-[400ms] h-px bg-gray-200 dark:bg-gray-800 mb-10' />
-
-        {/* Secondary Links */}
-        <div className='fade-up opacity-0 translate-y-4 transition-all duration-700 delay-500 flex flex-col md:flex-row md:items-center md:justify-between gap-6 sm:gap-8'>
-          <div className='flex flex-wrap items-center gap-6 sm:gap-8'>
-            <Link 
-              href='https://github.com/blackscythe123' 
+              key={s.title}
+              href={s.href}
               target='_blank'
-              className='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors'
+              rel='noopener noreferrer'
+              title={s.title}
+              className='w-12 h-12 rounded-full border-2 border-bone/25 flex items-center justify-center font-display font-extrabold text-bone hover:bg-sodium hover:text-ink-navy hover:border-sodium hover:-translate-y-1 transition'
+              style={{ boxShadow: '3px 3px 0 rgba(220,28,46,0.4)' }}
             >
-              GitHub
+              {s.label}
             </Link>
-            <Link 
-              href='https://www.linkedin.com/in/simiyonvinscentsamuel/' 
-              target='_blank'
-              className='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors'
-            >
-              LinkedIn
-            </Link>
-            <Link 
-              href='mailto:samsamuel234567@gmail.com'
-              className='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors'
-            >
-              Email
-            </Link>
-          </div>
-          
-          <p className='text-sm text-gray-400 dark:text-gray-500'>
-            © 2025 Simiyon Vinscent Samuel
-          </p>
-        </div>
+          ))}
+        </motion.div>
+
+        {/* divider */}
+        <div className='zoku-slice w-full max-w-md mt-10' />
+
+        {/* footer credits */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.85 }}
+          className='font-mono text-[10px] tracking-[0.22em] uppercase text-bone/45 mt-2 flex flex-wrap justify-center gap-x-6 gap-y-2'
+        >
+          <span>&copy; 2026 SIMIYON VINSCENT SAMUEL L.</span>
+          <span>BUILT IN CHENNAI</span>
+          <span>
+            SITE BY <em className='not-italic text-sodium'>S.V.S</em>
+          </span>
+        </motion.p>
       </div>
     </footer>
   );
 }
-
