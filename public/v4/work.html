@@ -1,0 +1,246 @@
+<!-- v4 work section. Needs in the page head / end of body:
+  <link rel="stylesheet" href="assets/ui/base.css">
+  <link rel="stylesheet" href="assets/ui/chat/fragment.css">
+  <link rel="stylesheet" href="assets/ui/checklist/fragment.css">
+  <link rel="stylesheet" href="assets/ui/pipeline-board/fragment.css">
+  <link rel="stylesheet" href="assets/ui/voice/fragment.css">
+  <link rel="stylesheet" href="assets/ui/terminal-run/fragment.css">
+  <link rel="stylesheet" href="v4/work.css">
+  <script src="v4/work.js" defer></script>   (after gsap, ScrollTrigger, shell.js)
+  assets/ui/ui.js comes with assets/system.js. Screenshots used: work/{qikskill,cc-portal,mcme,cihc,honeyledge,thamarai,peaceful,leetcode-card,chillz,clash}.webp -->
+<section class="w-sec wk" id="work" aria-labelledby="work-h">
+  <div class="w-wrap wk-head">
+    <p class="w-kicker">Selected work</p>
+    <h2 id="work-h" data-split>Projects, from client sites to hackathon builds</h2>
+    <p class="wk-intro" data-reveal>Client sites in production, a club platform, hackathon entries and open-source tools. Each card says what it is, what it is built with and where to see it. Private repositories are not linked.</p>
+  </div>
+  <div class="wk-pin" data-wk-pin>
+   <div class="wk-stage" data-wk-stage>
+    <div class="wk-track" data-wk-track>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/qikskill.webp" alt="Kaushalam, the vocational learning app I built at DreamPi" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Shipped</span><span class="wk-year">2026</span></div>
+          <h3>Kaushalam (DreamPi)</h3>
+          <p class="wk-line">Voice-first AI learning app for vocational skills in English, Hindi and Tamil. I was its primary engineer during my internship.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Supabase</li><li>Sarvam AI</li><li>Vector search</li></ul>
+          <p class="wk-links"><span class="wk-note">Employer product. The site is offline and the repo is not mine to share.</span></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/cms/1-write.webp" alt="The Coding Club CMS Studio editor: a markdown article with a live preview, a vertical picker and a Sync to GitHub button" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Shipped</span><span class="wk-year">2026</span></div>
+          <h3>SSN Coding Club CMS</h3>
+          <p class="wk-line">A zero-database CMS and portal for the club's eight technical verticals. Content lives in git and GitHub Actions deploy it.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>pnpm monorepo</li><li>GitHub Actions</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://cc-main-portal.vercel.app/" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://github.com/blackscythe123/CC-Website-2026" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="%BLOG_URL%/cc-cms-github-actions/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/mcme.webp" alt="The MCME Digi Health website" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>MCME Digi Health</h3>
+          <p class="wk-line">Patients consult licensed doctors online and get a medical certificate for work, college or travel. Built for a healthcare client.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Supabase</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://mcmedigihealth.com/" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/cihc.webp" alt="The CIHC website" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>CIHC</h3>
+          <p class="wk-line">Community healthcare web platform for Chathriyan Integrated Health Care.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Drizzle ORM</li><li>Supabase</li><li>Tailwind</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://chathriyanone.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/honeyledge.webp" alt="The HoneyLedge dashboard" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Built</span><span class="wk-year">2026</span></div>
+          <h3>HoneyLedge</h3>
+          <p class="wk-line">Honey provenance and IoT beehive monitoring, with partial-batch lineage checked on Arbitrum Sepolia.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Solidity</li><li>Arbitrum Sepolia</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://honey-ledge.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/thamarai.webp" alt="The Thamarai website" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>Thamarai</h3>
+          <p class="wk-line">Web portal for a non-profit working on food security and community outreach.</p>
+          <ul class="wk-stack"><li>Client site</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://thamarai-two.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/peaceful.webp" alt="The Peaceful Innovations website" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>Peaceful Innovations</h3>
+          <p class="wk-line">Corporate site and portfolio for Peaceful Innovations Pvt Ltd.</p>
+          <ul class="wk-stack"><li>Next.js 15</li><li>React 19</li><li>TypeScript</li><li>GSAP</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://peacefulinnovations.com" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/github-profile.webp" alt="My GitHub profile README scrolling: the live header, typing line, Spotify and coding-status cards, contribution stats, LeetCode cards, tech stack and the contribution grid" width="960" height="600" loading="lazy" style="object-position: top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Live</span><span class="wk-year">Ongoing</span></div>
+          <h3>GitHub profile platform</h3>
+          <p class="wk-line">Five Vercel services draw the cards on my GitHub profile, kept fresh by Redis, Actions and a sync engine.</p>
+          <ul class="wk-stack"><li>Vercel</li><li>Upstash Redis</li><li>GitHub Actions</li><li>VS Code extension</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/blackscythe123" target="_blank" rel="noopener">Profile<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="%BLOG_URL%/github-profile-platform/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" ><div class="ui ui-panel ui-checks" data-ui="checklist">
+                <div class="ui-checks__head"><div class="ui-title">Tomato batch</div><span class="ui-spacer"></span><div class="ui-meta" data-checks-count>3 of 5</div></div>
+                <div class="ui-checks__bar"><i data-checks-bar style="--k:0.6"></i></div>
+                <ul class="ui-checks__list">
+                  <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Farm: harvest logged</span></li>
+                  <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Distributor: batch received</span></li>
+                  <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Hash pinned to IPFS</span></li>
+                  <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Transfer confirmed on Sepolia</span></li>
+                  <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Retailer: shelf scan</span></li>
+                </ul>
+              </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Finalist</span><span class="wk-year">2025</span></div>
+          <h3>FarmLedge</h3>
+          <p class="wk-line">Farm-to-shelf traceability: batches on Arbitrum Sepolia, provenance on IPFS. Smart India Hackathon 2025 national finalist.</p>
+          <ul class="wk-stack"><li>Solidity</li><li>Arbitrum</li><li>IPFS</li><li>TypeScript</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/FarmLedge" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="%BLOG_URL%/farmledge-sih-2025/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" data-ui-loop><div class="ui ui-panel ui-chat" data-ui="chat">
+                <div class="ui-head"><span class="ui-agent" aria-hidden="true"></span><div class="ui-title">Case assistant</div><span class="ui-chat__online">Online</span><span class="ui-spacer"></span></div>
+                <div class="ui-chat__body">
+                  <div class="ui-chat__day">Station desk, 10:20</div>
+                  <div class="ui-msg ui-msg--me" data-chat-q><span class="ui-msg__text">Is case ka last FIR kab file hua tha?</span></div>
+                  <div class="ui-msg ui-msg--bot" data-chat-a>
+                    <span class="ui-agent ui-msg__av" aria-hidden="true"></span>
+                    <span class="ui-msg__col">
+                      <span class="ui-chat__typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <span class="ui-chat__answer">The last FIR was filed on <b>14 March</b>, under the theft section.</span>
+                      <span class="ui-chat__srcs"><span class="ui-chat__src"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M4 2.5h5l3 3v8H4z"/><path d="M9 2.5v3h3"/></svg>FIR register, page 2</span></span>
+                    </span>
+                  </div>
+                  <div class="ui-msg ui-msg--me"><span class="ui-msg__text">Complainant ka statement dikhao.</span></div>
+                </div>
+                <div class="ui-chat__input"><span class="ui-chat__ph">Ask in any language</span><span class="ui-chat__send" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 13V3.5M3.8 7.5 8 3.3l4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+              </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Shortlisted</span><span class="wk-year">2026</span></div>
+          <h3>Crime Intelligence System</h3>
+          <p class="wk-line">Conversational assistant for state police that answers case questions in English, Hindi and Kannada. Zoho hackathon shortlist.</p>
+          <ul class="wk-stack"><li>FastAPI</li><li>LangGraph</li><li>React</li><li>Zoho Catalyst</li></ul>
+          <p class="wk-links"><span class="wk-note">No public repo.</span></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="fb-phones fb-phones--card" role="img" aria-label="FlashBook on a phone: AI-generated cards with their illustrations, and the choice between study and read modes"><figure class="fb-phone"><img src="work/flashbook/mode.webp" alt="" width="540" height="1200" loading="lazy"></figure><figure class="fb-phone"><img src="work/flashbook/card-image.webp" alt="" width="540" height="1200" loading="lazy"></figure><figure class="fb-phone"><img src="work/flashbook/card-quote.webp" alt="" width="540" height="1200" loading="lazy"></figure></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Advanced</span><span class="wk-year">2026</span></div>
+          <h3>FlashBook</h3>
+          <p class="wk-line">Serverless pipeline that turns PDFs into AI learning cards. Advanced through several rounds of AWS AI for Bharat.</p>
+          <ul class="wk-stack"><li>Flutter</li><li>AWS Lambda</li><li>Google Gemini</li><li>DynamoDB</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/flashbook" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="%BLOG_URL%/flashbook-serverless-ai/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" ><div class="ui ui-panel ui-voice" data-ui="voice">
+                  <div class="ui-voice__top">
+                    <span class="ui-chip ui-chip--ink">Dictating</span>
+                    <span class="ui-spacer"></span>
+                    <span class="ui-voice__time" data-voice-time>00:07</span>
+                  </div>
+                  <div class="ui-voice__orb" data-voice-orb></div>
+                  <div class="ui-voice__who"><span class="ui-voice__name">Voxa</span><span class="ui-voice__with">hotkey F9, stop with Esc</span></div>
+                  <div class="ui-voice__cap" data-voice-cap>Move the retry button to the history page.</div>
+                  <div class="ui-voice__bar">
+                    <span class="ui-voice__btn" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><rect x="6" y="2" width="4" height="8" rx="2"/><path d="M3.5 8a4.5 4.5 0 0 0 9 0M8 12.5V14"/></svg></span>
+                    <span class="ui-voice__wave" aria-hidden="true"><i style="--h:4"></i><i style="--h:7"></i><i style="--h:12"></i><i style="--h:9"></i><i style="--h:16"></i><i style="--h:11"></i><i style="--h:20"></i><i style="--h:14"></i><i style="--h:8"></i><i style="--h:17"></i><i style="--h:12"></i><i style="--h:6"></i><i style="--h:10"></i><i style="--h:18"></i><i style="--h:13"></i><i style="--h:7"></i><i style="--h:15"></i><i style="--h:9"></i><i style="--h:5"></i><i style="--h:11"></i><i style="--h:7"></i><i style="--h:4"></i></span>
+                    <span class="ui-voice__btn ui-voice__end" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M2.2 9.6c3.4-2.6 8.2-2.6 11.6 0l-1.1 1.9-2.5-.9V8.9a7.5 7.5 0 0 0-4.4 0v1.7l-2.5.9z"/></svg></span>
+                  </div>
+                </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>Voxa</h3>
+          <p class="wk-line">Voice to text: an Electron desktop app with a global hotkey and a Kotlin Android keyboard.</p>
+          <ul class="wk-stack"><li>Electron</li><li>Whisper</li><li>Kotlin</li></ul>
+          <p class="wk-links"><a class="wk-link" href="%BLOG_URL%/voxa-voice-to-text/">Read how it works<span aria-hidden="true"> &rarr;</span></a><a class="wk-link" href="https://github.com/blackscythe123/voxa" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/leetcode-card.webp" alt="The LeetCode stats card with profile, solved, streak, skills and heatmap sections" loading="lazy" style="object-position:center"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>LeetCode stats card</h3>
+          <p class="wk-line">Composable LeetCode card for READMEs: six sections, 167 themes, animated SVG that plays inside GitHub's image sandbox.</p>
+          <ul class="wk-stack"><li>SVG</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github-readme-leetcode-stats.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://github.com/blackscythe123/github-readme-leetcode-stats" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" ><div class="ui ui-panel ui-term" data-ui="terminal-run">
+                  <div class="ui-term__head">
+                    <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <span class="ui-term__title">unfuck-android</span>
+                    <span class="ui-meta">pwsh</span>
+                    <span class="ui-spacer"></span>
+                    <span class="ui-chip ui-chip--plain ui-term__branch"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="3.5" r="1.5"/><circle cx="5" cy="12.5" r="1.5"/><circle cx="11" cy="5.5" r="1.5"/><path d="M5 5v6M11 7c0 2.6-6 1.8-6 4"/></svg>main</span>
+                  </div>
+                  <div class="ui-term__screen" data-term-screen>
+                    <div class="ui-term__track" data-term-track>
+                      <div class="ui-term__ln ui-term__cmd"><span class="ui-term__cwd">~/unfuck-android</span><span class="ui-term__sig">&gt;</span><span class="ui-term__typed" data-term-cmd>02-debloat.ps1 -Brand auto</span></div>
+                      <div class="ui-term__ln ui-term__meter" data-term-out data-term-meter><span class="ui-term__bar" style="--p:1"><i></i></span><span class="ui-term__count" data-term-count>4 of 4 packages</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.facebook.appmanager</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.facebook.system</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.facebook.katana</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.jio.myjio</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__gap" data-term-out aria-hidden="true"></div>
+                      <div class="ui-term__ln ui-term__sum" data-term-out><span class="ui-term__key">Packages</span><span class="ui-term__val">4 disabled</span><span class="ui-term__dim">(4)</span></div>
+                      <div class="ui-term__ln ui-term__sum" data-term-out><span class="ui-term__key">APKs</span><span class="ui-term__val">kept on /system</span><span class="ui-term__dim">(0)</span></div>
+                      <div class="ui-term__ln ui-term__done" data-term-out data-term-done><span class="ui-term__ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-5"/></svg></span><b>Done</b><span class="ui-term__dim">no root</span></div>
+                      <div class="ui-term__ln ui-term__cmd" data-term-next><span class="ui-term__cwd">~/unfuck-android</span><span class="ui-term__sig">&gt;</span><span class="ui-term__typed"></span><i class="ui-term__caret" aria-hidden="true"></i></div>
+                    </div>
+                  </div>
+                </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>unfuck-android</h3>
+          <p class="wk-line">Zero-root Android debloating: disables vendor apps and trackers over adb and keeps the APKs on the system.</p>
+          <ul class="wk-stack"><li>PowerShell</li><li>adb</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/unfuck-android" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/chillz.webp?v=2" alt="Chillz IPTV channel browser" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>Chillz IPTV</h3>
+          <p class="wk-line">Cross-platform live TV app with HLS playback and a channel browser with category, country and language filters.</p>
+          <ul class="wk-stack"><li>Flutter</li><li>HLS</li><li>libVLC</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://chillz-iptv.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://github.com/blackscythe123/Chillz-iptv" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card>
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/clash.webp" alt="The clash-of-progs arena" loading="lazy" style="object-position:center"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Built</span><span class="wk-year">2026</span></div>
+          <h3>clash-of-progs</h3>
+          <p class="wk-line">Browser arena where Python bots move on a 2D grid, collect powerups and fight rival algorithms. Built for IEEE Day at SSN.</p>
+          <ul class="wk-stack"><li>Python</li><li>Browser</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://clash-of-progs.vercel.app" target="_blank" rel="noopener">Live arena<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+    </div>
+   </div>
+  </div>
+</section>

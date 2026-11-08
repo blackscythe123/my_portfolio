@@ -1,0 +1,127 @@
+/* v4 #work: ribbon of project cards.
+   Static state = plain vertical stack (JS off, narrow screens, reduced motion, no WebGL).
+   The ribbon is only styled under .wk-ribbon, which ribbon.js adds after the scene is up.
+   Colours come only from the page tokens --p-bg --p-surface --p-ink --p-muted --p-accent --p-card --p-line. */
+#work {
+  --w-bg: var(--p-bg); --w-ink: var(--p-ink); --w-mut: var(--p-muted); --w-line: var(--p-line);
+  --w-acc: var(--p-accent); --w-card: var(--p-card); --w-surface: var(--p-surface);
+  --w-shadow: color-mix(in srgb, var(--p-ink) 30%, transparent);
+  --w-display: "Mona Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --w-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  position: relative; background: var(--w-bg); color: var(--w-ink);
+  padding: clamp(96px, 12vw, 160px) 0; font-family: var(--w-display);
+}
+.w-wrap { width: min(1280px, 100% - clamp(32px, 6vw, 96px)); margin-inline: auto; }
+#work h2 { font-family: var(--w-display); font-stretch: 112%; font-weight: 600; font-size: clamp(34px, 5.2vw, 76px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 24px; max-width: 18ch; text-wrap: balance; }
+#work h3 { font-family: var(--w-display); font-weight: 600; letter-spacing: -.02em; margin: 0; }
+.w-kicker { font: 500 13px/1 var(--w-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--w-acc); margin: 0 0 20px; }
+.wk-intro { font-size: clamp(17px, 1.5vw, 21px); line-height: 1.5; color: var(--w-mut); max-width: 60ch; margin: 0; }
+#work a { color: inherit; }
+
+.wk-chip { font: 500 12px/1 var(--w-mono); padding: 6px 10px; border-radius: 999px; background: var(--w-ink); color: var(--w-bg); white-space: nowrap; }
+.wk-year { font: 500 12px/1 var(--w-mono); color: var(--w-mut); }
+.wk-stack { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.wk-stack li { font: 500 12px/1 var(--w-mono); padding: 6px 9px; border: 1px solid var(--w-line); border-radius: 6px; }
+.wk-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; }
+.wk-link { font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; transition: color .2s; }
+.wk-link:hover, .wk-link:focus-visible { color: var(--w-acc); }
+.wk-note { font-size: 14px; color: var(--w-mut); margin: 0; }
+
+/* ---------- static state: vertical stack ---------- */
+.wk-head { margin-bottom: clamp(40px, 6vw, 72px); }
+.wk-pin { width: min(760px, 100% - clamp(32px, 6vw, 96px)); margin-inline: auto; }
+.wk-track { display: grid; gap: 28px; grid-template-columns: 1fr; }
+.wk-card { background: var(--w-card); border: 1px solid var(--w-line); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 48px -32px var(--w-shadow); }
+.wk-media { position: relative; overflow: hidden; height: clamp(240px, 52vw, 340px); background: var(--w-surface); }
+.wk-media__in { position: absolute; inset: 0; }
+.wk-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wk-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.wk-meta { display: flex; align-items: center; gap: 10px; }
+.wk-meta .wk-year { margin-left: auto; }
+.wk-card h3 { font-size: clamp(24px, 2.4vw, 34px); line-height: 1.08; font-stretch: 108%; }
+.wk-line { margin: 0; font-size: 16px; line-height: 1.5; color: var(--w-mut); }
+.wk-links { margin-top: auto; padding-top: 6px; }
+.wk-frag { position: absolute; inset: 0; display: grid; place-items: start center; padding: 22px 16px 0; background: var(--w-surface); overflow: hidden; }
+.wk-frag .ui { width: min(100%, 400px); flex: none; }
+
+/* FlashBook phone frames */
+.fb-phones { display: flex; justify-content: center; align-items: flex-end; gap: clamp(8px, 1.4vw, 18px); width: 100%; height: 100%; padding: clamp(16px, 3vw, 32px); background: var(--w-surface); }
+.fb-phone { margin: 0; flex: 0 1 auto; aspect-ratio: 9 / 20; height: min(100%, 520px); border-radius: clamp(14px, 1.8vw, 26px); overflow: hidden; border: 3px solid var(--w-line); box-shadow: 0 24px 48px -20px var(--w-shadow); background: var(--w-card); }
+.fb-phone img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.fb-phones--card .fb-phone:nth-child(2) { transform: translateY(-6%); }
+
+/* ---------- ribbon state (ribbon.js adds .wk-ribbon after the WebGL scene is up) ---------- */
+.wk-ribbon { padding-bottom: 0; }
+.wk-ribbon .wk-head { margin-bottom: clamp(16px, 3vw, 32px); }
+/* the HTML card list stays in the DOM for screen readers, visually hidden */
+.wk-ribbon .wk-pin { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.wk-rtrack { position: relative; height: calc(100vh + var(--wk-n, 10) * 40vh); height: calc(100svh + var(--wk-n, 10) * 40vh); }
+.wk-rstage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.wk-rcanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.wk-rpanel {
+  position: absolute; left: clamp(16px, 3vw, 56px); bottom: clamp(28px, 6svh, 64px); width: min(330px, 22vw); min-width: 260px;
+  padding: 4px; border-radius: 20px; border: 1px solid var(--w-line);
+  background: color-mix(in srgb, var(--w-bg) 62%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow: 0 30px 60px -36px var(--w-shadow);
+  opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .35s ease, transform .35s ease;
+}
+.wk-rpanel.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.wk-rpanel__in { transition: opacity .14s ease; }
+.wk-rpanel__in.is-out { opacity: 0; }
+.wk-body--panel { padding: 16px 18px 18px; gap: 10px; }
+.wk-body--panel h3 { font-size: clamp(20px, 1.9vw, 28px); }
+.wk-body--panel .wk-line { font-size: 14px; line-height: 1.45; }
+.wk-rprog { position: absolute; left: 50%; bottom: clamp(16px, 3svh, 28px); width: min(220px, 40vw); height: 2px; transform: translateX(-50%); background: var(--w-line); border-radius: 2px; overflow: hidden; }
+.wk-rprog i { position: absolute; inset: 0; background: var(--w-acc); transform-origin: left; transform: scaleX(0); }
+
+@media (max-width: 899px) {
+  .wk-pin { width: min(560px, 100% - 32px); }
+}
+
+/* #work sizes to its content; the kit forces sections to one screen */
+main > section#work { height: auto; min-height: 0; overflow: visible; }
+
+/* screenshot loops inside cards (slides.js) */
+.wk-slides { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.wk-slides > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity .9s ease; }
+.wk-slides > img.is-on { opacity: 1; }
+.wk-slides__dots { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); display: flex; gap: 6px; padding: 5px 8px; border-radius: 99px; background: rgb(0 0 0 / .35); z-index: 2; }
+.wk-slides__dots i { width: 6px; height: 6px; border-radius: 50%; background: rgb(255 255 255 / .45); transition: background .3s, transform .3s; }
+.wk-slides__dots i.is-on { background: #fff; transform: scale(1.25); }
+@media (prefers-reduced-motion: reduce) { .wk-slides > img { transition: none; } }
+
+/* the progress line, wider, with a cat running along it */
+.wk-rprog { width: min(420px, 62vw); overflow: visible; }
+.wk-cat { --cat: #111214; position: absolute; left: 0; bottom: 1px; width: 40px; height: 26px; transform: translateX(-50%); color: var(--cat); pointer-events: none; }
+html[data-theme="dark"] .wk-cat { --cat: #f3f3f1; }
+.wk-cat__body { position: absolute; inset: 0; width: 40px; height: 26px; fill: currentColor; overflow: visible; transition: transform .25s ease; }
+.wk-cat.is-back .wk-cat__body { transform: scaleX(-1); }
+.wk-cat__eye { fill: var(--w-acc); }
+.wk-cat__legs rect { transform-box: fill-box; transform-origin: 50% 10%; }
+.wk-cat__tail { transform-box: fill-box; transform-origin: 100% 100%; animation: wk-cat-tail 1.8s ease-in-out infinite; }
+.wk-cat__head { transform-box: fill-box; transform-origin: 30% 80%; animation: wk-cat-look 4s ease-in-out infinite; }
+.wk-cat.is-run .wk-cat__body { animation: wk-cat-bob .32s ease-in-out infinite; }
+.wk-cat.is-back.is-run .wk-cat__body { animation-name: wk-cat-bob-back; }
+.wk-cat.is-run .l1, .wk-cat.is-run .l4 { animation: wk-cat-leg .32s ease-in-out infinite; }
+.wk-cat.is-run .l2, .wk-cat.is-run .l3 { animation: wk-cat-leg .32s ease-in-out infinite reverse; }
+.wk-cat.is-run .wk-cat__tail { animation-duration: .5s; }
+/* idle: the front paw bats at the yarn */
+.wk-cat:not(.is-run) .l4 { animation: wk-cat-bat 1.6s ease-in-out infinite; }
+.wk-cat__yarn { position: absolute; bottom: 0; left: 36px; width: 12px; height: 12px; color: var(--w-acc); transition: left .25s ease; }
+.wk-cat.is-back .wk-cat__yarn { left: -8px; }
+.wk-cat__yarn svg { width: 100%; height: 100%; fill: currentColor; stroke: color-mix(in srgb, var(--w-bg) 70%, transparent); stroke-width: .9; fill-rule: nonzero; }
+.wk-cat.is-run .wk-cat__yarn svg { animation: wk-yarn-roll .6s linear infinite; }
+.wk-cat.is-back.is-run .wk-cat__yarn svg { animation-direction: reverse; }
+.wk-cat:not(.is-run) .wk-cat__yarn { animation: wk-yarn-nudge 1.6s ease-in-out infinite; }
+@keyframes wk-cat-leg { 0%,100% { transform: rotate(28deg); } 50% { transform: rotate(-28deg); } }
+@keyframes wk-cat-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+@keyframes wk-cat-bob-back { 0%,100% { transform: scaleX(-1) translateY(0); } 50% { transform: scaleX(-1) translateY(-1.5px); } }
+@keyframes wk-cat-tail { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-18deg); } }
+@keyframes wk-cat-look { 0%,80%,100% { transform: rotate(0); } 88% { transform: rotate(-8deg); } }
+@keyframes wk-cat-bat { 0%,60%,100% { transform: rotate(0); } 72% { transform: rotate(-55deg) translateX(1px); } 80% { transform: rotate(-20deg); } }
+@keyframes wk-yarn-roll { to { transform: rotate(360deg); } }
+@keyframes wk-yarn-nudge { 0%,66%,100% { transform: translateX(0); } 74% { transform: translateX(4px) rotate(40deg); } 86% { transform: translateX(2px) rotate(20deg); } }
+@media (prefers-reduced-motion: reduce) { .wk-cat *, .wk-cat { animation: none !important; } }
+.wk-cat { width: 52px; height: 34px; } .wk-cat__body { width: 52px; height: 34px; }
+.wk-cat__yarn { left: 47px; width: 15px; height: 15px; } .wk-cat.is-back .wk-cat__yarn { left: -11px; }
