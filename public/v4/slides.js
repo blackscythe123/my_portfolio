@@ -2,7 +2,7 @@
    Still (first image only) under prefers-reduced-motion. Images after the first load lazily. */
 (function () {
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var INTERVAL = 2800;
+  var INTERVAL = 2000;
   function setup(box) {
     var imgs = Array.prototype.slice.call(box.querySelectorAll('img'));
     if (imgs.length < 2 || reduce) return;

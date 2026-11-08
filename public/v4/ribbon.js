@@ -13,7 +13,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
   /* tuning */
   var VH_PER_CARD = 34;      /* scroll length per card, vh */
   var SMOOTH = 0.09;         /* per-frame (60 Hz) easing of progress toward the scroll target */
-  var SWAP_MS = 2800;        /* screenshot change interval for cards with several images */
+  var SWAP_MS = 2000;        /* screenshot change interval for cards with several images */
   var CARD_W = 2.6, CARD_H = 1.635, GAP = 0.03, STEP = CARD_W + GAP;   /* bigger cards: the front one fills about 43% of the width */
   var NX = 28, NY = 3;
 
@@ -285,11 +285,11 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
         layout(it, s);
         var d = Math.abs(s - rail.near);
         if (d < bestD) { bestD = d; best = i; }
-        /* several screenshots: advance while near the front */
-        if (d < STEP * 2.5 && it.urls.length > 1) {
+        /* several screenshots: every visible card cycles, staggered so they don't all change on the same frame */
+        if (it.urls.length > 1) {
           var nx = (it.cur + 1) % it.urls.length;
           it.load(nx);
-          if (!it.t) it.t = now;
+          if (!it.t) it.t = now - (i * 370) % SWAP_MS;
           if (now - it.t > SWAP_MS && it.tex[nx]) { it.swap(nx); it.t = now; }
         }
         if (it.mix > 0) {
