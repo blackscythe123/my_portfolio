@@ -1,0 +1,22 @@
+[
+ {
+  "src": "work/honeyledge/1-home.webp",
+  "alt": "Honey Chain landing page: hero reading Know your honey, from hive to home",
+  "page": "Home"
+ },
+ {
+  "src": "work/honeyledge/2-verify.webp",
+  "alt": "Blockchain batch verification page showing a sealed jar provenance record",
+  "page": "Traceability"
+ },
+ {
+  "src": "work/honeyledge/3-iot.webp",
+  "alt": "Hive Intelligence dashboard with simulated sensor readings and AI diagnostics",
+  "page": "IoT telemetry"
+ },
+ {
+  "src": "work/honeyledge/4-market.webp",
+  "alt": "Procurement hub listing available honey batches from beekeepers",
+  "page": "B2B market"
+ }
+]

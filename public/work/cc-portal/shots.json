@@ -1,0 +1,22 @@
+[
+ {
+  "src": "work/cc-portal/1-home.webp",
+  "alt": "SSN Coding Club home with terminal-style command menu",
+  "page": "Home"
+ },
+ {
+  "src": "work/cc-portal/2-verticals.webp",
+  "alt": "Sticky-note board of the nine club verticals",
+  "page": "Verticals"
+ },
+ {
+  "src": "work/cc-portal/3-blogs.webp",
+  "alt": "The SSN Chronicle newspaper-style blog listing",
+  "page": "Blogs"
+ },
+ {
+  "src": "work/cc-portal/4-events.webp",
+  "alt": "Timeline calendar of upcoming events",
+  "page": "Events"
+ }
+]

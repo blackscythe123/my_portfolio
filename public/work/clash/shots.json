@@ -1,0 +1,6 @@
+[
+ {"src":"work/clash/1-gameplay.webp","alt":"Live match replay on a maze arena: bots labelled by team with HP-heal floaters, placements and Elo panel, turn events and playback controls","page":"Gameplay"},
+ {"src":"work/clash/2-gameplay-poison.webp","alt":"Mid-fight replay with poison potion and heal floaters, per-bot score breakdown and turn events","page":"Match replay"},
+ {"src":"work/clash/3-elo-curve.webp","alt":"Player deep-dive with placement distribution and Elo progression chart over 22 matches","page":"Elo curve"},
+ {"src":"work/clash/4-standings.webp","alt":"Tournament standings table with Elo, wins, podium rate and placement breakdown","page":"Standings"}
+]

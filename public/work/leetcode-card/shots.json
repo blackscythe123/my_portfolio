@@ -1,0 +1,17 @@
+[
+ {
+  "src": "work/leetcode-card/1-default.webp",
+  "alt": "Configurator with the live LeetCode stats card in the default theme",
+  "page": "Default theme"
+ },
+ {
+  "src": "work/leetcode-card/2-dracula.webp",
+  "alt": "Same card switched to the dracula theme",
+  "page": "Dracula theme"
+ },
+ {
+  "src": "work/leetcode-card/3-sunset-compact.webp",
+  "alt": "Gradient theme with skills and heatmap sections toggled off",
+  "page": "Sunset gradient"
+ }
+]

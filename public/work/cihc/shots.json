@@ -1,0 +1,22 @@
+[
+ {
+  "src": "work/cihc/1-home.webp",
+  "alt": "Hero of the integrated health care organisation site",
+  "page": "Home"
+ },
+ {
+  "src": "work/cihc/2-ecosystem.webp",
+  "alt": "Ecosystem page with four care pathways",
+  "page": "Ecosystem"
+ },
+ {
+  "src": "work/cihc/3-our-approach.webp",
+  "alt": "Care approach page: science and the whole person",
+  "page": "Our approach"
+ },
+ {
+  "src": "work/cihc/4-about.webp",
+  "alt": "About page on the organisation origins",
+  "page": "About"
+ }
+]

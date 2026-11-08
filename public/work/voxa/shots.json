@@ -1,0 +1,17 @@
+[
+ {
+  "src": "work/voxa/1-home.webp",
+  "alt": "Voxa home: today's dictation counts, the ready state and the five-step flow",
+  "page": "Home"
+ },
+ {
+  "src": "work/voxa/2-shortcuts.webp",
+  "alt": "Shortcuts view: configurable start and stop hotkeys",
+  "page": "Shortcuts"
+ },
+ {
+  "src": "work/voxa/3-settings.webp",
+  "alt": "Settings view: startup, recording strip and history retention",
+  "page": "Settings"
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "src": "work/mcme/1-home.webp",
+  "alt": "Landing page: get a doctor-verified medical certificate online in 15 minutes",
+  "page": "Home"
+ },
+ {
+  "src": "work/mcme/2-verify.webp",
+  "alt": "Public certificate verification page for employers and HR",
+  "page": "Verify certificate"
+ }
+]
