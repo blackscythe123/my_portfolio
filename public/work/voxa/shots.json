@@ -5,6 +5,11 @@
   "page": "Home"
  },
  {
+  "src": "work/voxa/2-recording-strip.webp",
+  "alt": "The floating recording strip: a paper-style timer with a stop button that sits over any app while Voxa listens",
+  "page": "Recording strip"
+ },
+ {
   "src": "work/voxa/2-shortcuts.webp",
   "alt": "Shortcuts view: configurable start and stop hotkeys",
   "page": "Shortcuts"
