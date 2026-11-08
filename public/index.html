@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","dark")}})()</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simiyon Vinscent Samuel · Full-stack and AI engineer</title>
+<meta name="description" content="Simiyon Vinscent Samuel is a full-stack and AI engineer and an Integrated M.Tech student at SSN College of Engineering, Chennai. Smart India Hackathon 2025 national finalist, DreamPi intern, open to internships and freelance work.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Simiyon Vinscent Samuel · Full-stack and AI engineer">
+<meta property="og:description" content="Full-stack and AI engineer, Integrated M.Tech student at SSN College of Engineering, Chennai.">
+<meta property="og:image" content="me.webp">
+<meta property="og:url" content="https://www.simiyonvinscentsamuel.tech/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Simiyon Vinscent Samuel · Full-stack and AI engineer">
+<meta name="twitter:description" content="Full-stack and AI engineer, Integrated M.Tech student at SSN College of Engineering, Chennai.">
+<meta name="twitter:image" content="me.webp">
+<link rel="icon" href="me-github.webp" type="image/webp">
+<meta name="theme-color" content="#eef0f3">
+<link rel="canonical" href="https://www.simiyonvinscentsamuel.tech/">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..800&family=Geist+Mono:wght@400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+:root {
+  --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470;
+  --p-accent: #1f2de6; --p-accent-ink: #ffffff; --p-action: #1f2de6; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b0c0e; --p-inv-surface: #17181a; --p-inv-ink: #eef0f3; --p-inv-muted: #8e8f92;
+  --p-inv-accent: #eef0f3; --p-inv-accent-ink: #0b0c0e; --p-inv-action: #eef0f3; --p-inv-action-ink: #0b0c0e;
+  --font-display: "Mona Sans", system-ui, sans-serif;
+  --font-text: "Mona Sans", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 560;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.045em;
+  --display-stretch: 104%;
+  --v4-pad: clamp(96px, 12vw, 160px);
+  --v4-nav: 64px;
+}
+</style>
+<link rel="stylesheet" href="assets/ui/base.css">
+<link rel="stylesheet" href="assets/ui/checklist/fragment.css">
+<link rel="stylesheet" href="assets/ui/chat/fragment.css">
+<link rel="stylesheet" href="assets/ui/voice/fragment.css">
+<link rel="stylesheet" href="assets/ui/terminal-run/fragment.css">
+<link rel="stylesheet" href="assets/ui/pipeline-board/fragment.css">
+<link rel="stylesheet" href="assets/ui/window/fragment.css">
+<link rel="stylesheet" href="assets/diagrams/diagram.css">
+<link rel="stylesheet" href="v4/shell.css?v=mw8epah3">
+<link rel="stylesheet" href="v4/work.css?v=mw8epah3">
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script defer src="v4/shell.js?v=mw8epah3"></script>
+
+</head>
+<body>
+<header class="v4-nav" id="top">
+  <a class="v4-nav__skip" href="#work">Skip to content</a>
+  <div class="v4-nav__bar">
+    <a class="v4-nav__logo" href="#hero" aria-label="Simiyon Vinscent Samuel, top of page"><img class="v4-nav__avatar" src="me-github.webp" alt="" width="40" height="40"><span class="v4-nav__name">Simiyon Vinscent Samuel</span></a>
+    <nav class="v4-nav__links" id="v4-menu" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+      <button class="v4-theme" type="button" data-theme-toggle aria-label="Switch to dark theme"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="v4-theme__sun" d="M12 4V2M12 22v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M5.6 18.4l-1.4 1.4M19.8 4.2l-1.4 1.4M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="v4-theme__moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+      <a class="btn btn--sm btn--primary v4-nav__cv" href="resume.pdf">Résumé</a>
+    </nav>
+    <button class="v4-nav__toggle" type="button" aria-expanded="false" aria-controls="v4-menu" aria-label="Open menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+<section class="v4-hero" id="hero" aria-label="Introduction">
+  <div class="v4-hero__layers" aria-hidden="true">
+    <span class="v4-hero__ring" data-parallax="0.3"></span>
+    <span class="v4-hero__grid-dots" data-parallax="0.12"></span>
+  </div>
+  <div class="v4-in v4-hero__grid">
+    <div class="v4-hero__text" data-hero-text>
+      <p class="v4-eye v4-hero__eye" data-h-in><span class="v4-dot" aria-hidden="true"></span>Open to internships and freelance work</p>
+      <h1 class="v4-hero__name" data-hero-name aria-label="Simiyon Vinscent Samuel">
+        <span class="v4-line" data-line>Simiyon</span>
+        <span class="v4-line" data-line>Vinscent</span>
+        <span class="v4-line" data-line>Samuel</span>
+      </h1>
+      <p class="v4-hero__lede" data-h-in>Full-stack and AI engineer, Integrated M.Tech student at SSN College of Engineering, Chennai.</p>
+      <div class="btn-row v4-hero__btns" data-h-in>
+        <a class="btn btn--primary" href="resume.pdf">Download résumé</a>
+        <a class="btn btn--secondary" href="mailto:samsamuel234567@gmail.com">Email me</a>
+      </div>
+      <ul class="v4-hero__facts" data-h-in>
+        <li>National finalist, <br>Smart India Hackathon 2025</li>
+        <li>Software engineering intern <br>at DreamPi, 2026</li>
+        <li>Freelance web developer <br>since 2025</li>
+      </ul>
+    </div>
+    <figure class="v4-hero__photo" data-hero-photo>
+      <div class="v4-hero__frame" data-hero-frame>
+        <img src="me.webp" alt="Simiyon Vinscent Samuel" width="800" height="800" data-parallax="0.1" fetchpriority="high">
+        <span class="v4-hero__shine" aria-hidden="true"></span>
+      </div>
+      <figcaption class="v4-hero__cap" data-h-in>Chennai, India</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="v4-sec v4-dark v4-stack" id="stack" aria-labelledby="stack-h">
+  <div class="v4-in v4-stack__head">
+    <p class="v4-eye" data-reveal>Stack</p>
+    <h2 class="v4-h2" id="stack-h" data-split>What I build with</h2>
+    <p class="v4-stack__note" data-reveal>Languages, frameworks, data and AI tools I have used in my projects. Hover a row to pause it.</p>
+  </div>
+  <div class="v4-stack__rows">
+    <div class="marquee" data-marquee="left" data-speed="60">
+      <div class="marquee__track"><ul class="marquee__group"><li class="v4-chip"><img src="https://cdn.simpleicons.org/typescript/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>TypeScript</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/javascript/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>JavaScript</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/python/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Python</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/dart/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Dart</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/kotlin/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Kotlin</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/openjdk/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Java</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/cplusplus/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>C and C++</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/solidity/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Solidity</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/postgresql/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>SQL</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/nextdotjs/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Next.js</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/react/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>React</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/flutter/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Flutter</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/electron/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Electron</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/dotnet/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>.NET 8</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/jetpackcompose/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Jetpack Compose</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/tailwindcss/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Tailwind</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/vuedotjs/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Vue</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/threedotjs/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Three.js</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/gsap/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>GSAP</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/framer/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Framer Motion</span></li></ul></div>
+    </div>
+    <div class="marquee" data-marquee="right" data-speed="70">
+      <div class="marquee__track"><ul class="marquee__group"><li class="v4-chip"><img src="https://cdn.simpleicons.org/nodedotjs/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Node.js</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/fastapi/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>FastAPI</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/express/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Express</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/flask/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Flask</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/prisma/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Prisma</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/drizzle/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Drizzle ORM</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/sqlalchemy/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>SQLAlchemy</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/payloadcms/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Payload CMS</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/supabase/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Supabase</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/postgresql/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>PostgreSQL</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/redis/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Redis</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/mongodb/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>MongoDB</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/firebase/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Firebase</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/neo4j/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Neo4j</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/sqlite/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>SQLite</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/docker/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Docker</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/vercel/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Vercel</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/railway/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Railway</span></li><li class="v4-chip"><span>AWS Lambda and Google Gemini</span></li><li class="v4-chip"><span>Zoho Catalyst</span></li></ul></div>
+    </div>
+    <div class="marquee" data-marquee="left" data-speed="65">
+      <div class="marquee__track"><ul class="marquee__group"><li class="v4-chip"><img src="https://cdn.simpleicons.org/pytorch/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>PyTorch</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/opencv/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>OpenCV</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/huggingface/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Hugging Face</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/onnx/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>ONNX Runtime</span></li><li class="v4-chip"><span>LangGraph</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/pandas/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>pandas</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/numpy/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>NumPy</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/scikitlearn/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>scikit-learn</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/elevenlabs/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>ElevenLabs</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/webrtc/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>WebRTC</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/livekit/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>LiveKit</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/twilio/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Twilio</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/stripe/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Stripe</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/razorpay/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Razorpay</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/n8n/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>n8n</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/capacitor/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Capacitor</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/git/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Git</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/linux/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Linux</span></li><li class="v4-chip"><img src="https://cdn.simpleicons.org/postman/eef0f3" alt="" width="22" height="22" loading="lazy" onerror="this.remove()"><span>Postman</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- v4 work section. Needs in the page head / end of body:
+  <link rel="stylesheet" href="assets/ui/base.css">
+  <link rel="stylesheet" href="assets/ui/chat/fragment.css">
+  <link rel="stylesheet" href="assets/ui/checklist/fragment.css">
+  <link rel="stylesheet" href="assets/ui/pipeline-board/fragment.css">
+  <link rel="stylesheet" href="assets/ui/voice/fragment.css">
+  <link rel="stylesheet" href="assets/ui/terminal-run/fragment.css">
+  <link rel="stylesheet" href="v4/work.css?v=mw8epah3">
+  <script src="v4/work.js?v=mw8epah3" defer></script>   (after gsap, ScrollTrigger, shell.js)
+  assets/ui/ui.js comes with assets/system.js. Screenshots used: work/{qikskill,cc-portal,mcme,cihc,honeyledge,thamarai,peaceful,leetcode-card,chillz,clash}.webp -->
+<section class="w-sec wk" id="work" aria-labelledby="work-h">
+  <div class="w-wrap wk-head">
+    <p class="w-kicker">Selected work</p>
+    <h2 id="work-h" data-split>Projects, from client sites to hackathon builds</h2>
+    <p class="wk-intro" data-reveal>Client sites in production, a club platform, hackathon entries and open-source tools. Each card says what it is, what it is built with and where to see it. Private repositories are not linked.</p>
+  </div>
+  <div class="wk-pin" data-wk-pin>
+   <div class="wk-stage" data-wk-stage>
+    <div class="wk-track" data-wk-track>
+      <article class="wk-card" data-wk-card data-tex="work/kaushalam/1-home.webp|work/kaushalam/2-how-it-works.webp|work/kaushalam/3-hindi.webp|work/kaushalam/4-tamil.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/kaushalam/1-home.webp" alt="Kaushalam landing page with role chooser for learner, trainer, employer and training partner" width="1440" height="900" loading="eager" class="is-on"><img src="work/kaushalam/2-how-it-works.webp" alt="How Kaushalam works overview page" width="1440" height="900" loading="lazy"><img src="work/kaushalam/3-hindi.webp" alt="Landing page in Hindi" width="1440" height="900" loading="lazy"><img src="work/kaushalam/4-tamil.webp" alt="Landing page in Tamil" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Shipped</span><span class="wk-year">2026</span></div>
+          <h3>Kaushalam (DreamPi)</h3>
+          <p class="wk-line">Voice-first AI learning app for vocational skills in English, Hindi and Tamil. I was its primary engineer during my internship.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Supabase</li><li>Sarvam AI</li><li>Vector search</li></ul>
+          <p class="wk-links"><span class="wk-note">Employer product. The site is offline and the repo is not mine to share.</span></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/cms/1-write.webp|work/cms/2-submitted.webp|work/cms/3-reviews.webp|work/cms/4-github-pr.webp|work/cms/people.webp|work/cc-portal/1-home.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/cms/1-write.webp" alt="Writing an article in the Coding Club CMS Studio with the live preview beside it" width="1440" height="900" loading="eager" class="is-on"><img src="work/cms/2-submitted.webp" alt="The Studio after Submit: the post is on a draft branch and opened as pull request #28" width="1440" height="900" loading="lazy"><img src="work/cms/3-reviews.webp" alt="The Studio Reviews queue showing the submitted article waiting for a superadmin" width="1440" height="900" loading="lazy"><img src="work/cms/4-github-pr.webp" alt="The pull request on GitHub with the code owners requested as reviewers" width="1440" height="900" loading="lazy"><img src="work/cms/people.webp" alt="The CMS Studio People page: roles per vertical" width="1440" height="900" loading="lazy"><img src="work/cc-portal/1-home.webp" alt="SSN Coding Club home with terminal-style command menu" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Shipped</span><span class="wk-year">2026</span></div>
+          <h3>SSN Coding Club CMS</h3>
+          <p class="wk-line">A zero-database CMS and portal for the club's eight technical verticals. Content lives in git and GitHub Actions deploy it.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>pnpm monorepo</li><li>GitHub Actions</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://cc-main-portal.vercel.app/" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://github.com/blackscythe123/CC-Website-2026" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://blog.simiyonvinscentsamuel.tech/cc-cms-github-actions/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/mcme/1-home.webp|work/mcme/2-verify.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/mcme/1-home.webp" alt="Landing page: get a doctor-verified medical certificate online in 15 minutes" width="1440" height="900" loading="eager" class="is-on"><img src="work/mcme/2-verify.webp" alt="Public certificate verification page for employers and HR" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>MCME Digi Health</h3>
+          <p class="wk-line">Patients consult licensed doctors online and get a medical certificate for work, college or travel. Built for a healthcare client.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Supabase</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://mcmedigihealth.com/" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/cihc/1-home.webp|work/cihc/2-ecosystem.webp|work/cihc/3-our-approach.webp|work/cihc/4-about.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/cihc/1-home.webp" alt="Hero of the integrated health care organisation site" width="1440" height="900" loading="eager" class="is-on"><img src="work/cihc/2-ecosystem.webp" alt="Ecosystem page with four care pathways" width="1440" height="900" loading="lazy"><img src="work/cihc/3-our-approach.webp" alt="Care approach page: science and the whole person" width="1440" height="900" loading="lazy"><img src="work/cihc/4-about.webp" alt="About page on the organisation origins" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>CIHC</h3>
+          <p class="wk-line">Community healthcare web platform for Chathriyan Integrated Health Care.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Drizzle ORM</li><li>Supabase</li><li>Tailwind</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://chathriyanone.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/honeyledge/1-home.webp|work/honeyledge/2-verify.webp|work/honeyledge/3-iot.webp|work/honeyledge/4-market.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/honeyledge/1-home.webp" alt="Honey Chain landing page: hero reading Know your honey, from hive to home" width="1440" height="900" loading="eager" class="is-on"><img src="work/honeyledge/2-verify.webp" alt="Blockchain batch verification page showing a sealed jar provenance record" width="1440" height="900" loading="lazy"><img src="work/honeyledge/3-iot.webp" alt="Hive Intelligence dashboard with simulated sensor readings and AI diagnostics" width="1440" height="900" loading="lazy"><img src="work/honeyledge/4-market.webp" alt="Procurement hub listing available honey batches from beekeepers" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Built</span><span class="wk-year">2026</span></div>
+          <h3>HoneyLedge</h3>
+          <p class="wk-line">Honey provenance and IoT beehive monitoring, with partial-batch lineage checked on Arbitrum Sepolia.</p>
+          <ul class="wk-stack"><li>Next.js</li><li>Solidity</li><li>Arbitrum Sepolia</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://honey-ledge.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/thamarai.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/thamarai.webp" alt="The Thamarai website" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>Thamarai</h3>
+          <p class="wk-line">Web portal for a non-profit working on food security and community outreach.</p>
+          <ul class="wk-stack"><li>Client site</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://thamarai-two.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/peaceful/1-home.webp|work/peaceful/2-framework.webp|work/peaceful/3-movements.webp|work/peaceful/4-journey.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/peaceful/1-home.webp" alt="Human Recovery Lab hero" width="1440" height="900" loading="eager" class="is-on"><img src="work/peaceful/2-framework.webp" alt="Six dimensions of recovery" width="1440" height="900" loading="lazy"><img src="work/peaceful/3-movements.webp" alt="Ten movements in the field" width="1440" height="900" loading="lazy"><img src="work/peaceful/4-journey.webp" alt="Ten-year journey timeline" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Client, shipped</span><span class="wk-year">2026</span></div>
+          <h3>Peaceful Innovations</h3>
+          <p class="wk-line">Corporate site and portfolio for Peaceful Innovations Pvt Ltd.</p>
+          <ul class="wk-stack"><li>Next.js 15</li><li>React 19</li><li>TypeScript</li><li>GSAP</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://peacefulinnovations.com" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/github-profile/1.webp|work/github-profile/2.webp|work/github-profile/3.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/github-profile.webp" alt="My GitHub profile README scrolling: the live header, typing line, Spotify and coding-status cards, contribution stats, LeetCode cards, tech stack and the contribution grid" width="960" height="600" loading="lazy" style="object-position: top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Live</span><span class="wk-year">Ongoing</span></div>
+          <h3>GitHub profile platform</h3>
+          <p class="wk-line">Five Vercel services draw the cards on my GitHub profile, kept fresh by Redis, Actions and a sync engine.</p>
+          <ul class="wk-stack"><li>Vercel</li><li>Upstash Redis</li><li>GitHub Actions</li><li>VS Code extension</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/blackscythe123" target="_blank" rel="noopener">Profile<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://blog.simiyonvinscentsamuel.tech/github-profile-platform/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/posters/farmledge.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" ><div class="ui ui-panel ui-checks" data-ui="checklist">
+                <div class="ui-checks__head"><div class="ui-title">Tomato batch</div><span class="ui-spacer"></span><div class="ui-meta" data-checks-count>3 of 5</div></div>
+                <div class="ui-checks__bar"><i data-checks-bar style="--k:0.6"></i></div>
+                <ul class="ui-checks__list">
+                  <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Farm: harvest logged</span></li>
+                  <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Distributor: batch received</span></li>
+                  <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Hash pinned to IPFS</span></li>
+                  <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Transfer confirmed on Sepolia</span></li>
+                  <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Retailer: shelf scan</span></li>
+                </ul>
+              </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Finalist</span><span class="wk-year">2025</span></div>
+          <h3>FarmLedge</h3>
+          <p class="wk-line">Farm-to-shelf traceability: batches on Arbitrum Sepolia, provenance on IPFS. Smart India Hackathon 2025 national finalist.</p>
+          <ul class="wk-stack"><li>Solidity</li><li>Arbitrum</li><li>IPFS</li><li>TypeScript</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/FarmLedge" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://blog.simiyonvinscentsamuel.tech/farmledge-sih-2025/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/posters/crime-intelligence-system.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" data-ui-loop><div class="ui ui-panel ui-chat" data-ui="chat">
+                <div class="ui-head"><span class="ui-agent" aria-hidden="true"></span><div class="ui-title">Case assistant</div><span class="ui-chat__online">Online</span><span class="ui-spacer"></span></div>
+                <div class="ui-chat__body">
+                  <div class="ui-chat__day">Station desk, 10:20</div>
+                  <div class="ui-msg ui-msg--me" data-chat-q><span class="ui-msg__text">Is case ka last FIR kab file hua tha?</span></div>
+                  <div class="ui-msg ui-msg--bot" data-chat-a>
+                    <span class="ui-agent ui-msg__av" aria-hidden="true"></span>
+                    <span class="ui-msg__col">
+                      <span class="ui-chat__typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <span class="ui-chat__answer">The last FIR was filed on <b>14 March</b>, under the theft section.</span>
+                      <span class="ui-chat__srcs"><span class="ui-chat__src"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M4 2.5h5l3 3v8H4z"/><path d="M9 2.5v3h3"/></svg>FIR register, page 2</span></span>
+                    </span>
+                  </div>
+                  <div class="ui-msg ui-msg--me"><span class="ui-msg__text">Complainant ka statement dikhao.</span></div>
+                </div>
+                <div class="ui-chat__input"><span class="ui-chat__ph">Ask in any language</span><span class="ui-chat__send" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 13V3.5M3.8 7.5 8 3.3l4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+              </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Shortlisted</span><span class="wk-year">2026</span></div>
+          <h3>Crime Intelligence System</h3>
+          <p class="wk-line">Conversational assistant for state police that answers case questions in English, Hindi and Kannada. Zoho hackathon shortlist.</p>
+          <ul class="wk-stack"><li>FastAPI</li><li>LangGraph</li><li>React</li><li>Zoho Catalyst</li></ul>
+          <p class="wk-links"><span class="wk-note">No public repo.</span></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/posters/flashbook.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="fb-phones fb-phones--card" role="img" aria-label="FlashBook on a phone: AI-generated cards with their illustrations, and the choice between study and read modes"><figure class="fb-phone"><img src="work/flashbook/mode.webp" alt="" width="540" height="1200" loading="lazy"></figure><figure class="fb-phone"><img src="work/flashbook/card-image.webp" alt="" width="540" height="1200" loading="lazy"></figure><figure class="fb-phone"><img src="work/flashbook/card-quote.webp" alt="" width="540" height="1200" loading="lazy"></figure></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Advanced</span><span class="wk-year">2026</span></div>
+          <h3>FlashBook</h3>
+          <p class="wk-line">Serverless pipeline that turns PDFs into AI learning cards. Advanced through several rounds of AWS AI for Bharat.</p>
+          <ul class="wk-stack"><li>Flutter</li><li>AWS Lambda</li><li>Google Gemini</li><li>DynamoDB</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/flashbook" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://blog.simiyonvinscentsamuel.tech/flashbook-serverless-ai/">Read the post<span aria-hidden="true"> &rarr;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/voxa/1-home.webp|work/voxa/2-shortcuts.webp|work/voxa/3-settings.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" ><div class="ui ui-panel ui-voice" data-ui="voice">
+                  <div class="ui-voice__top">
+                    <span class="ui-chip ui-chip--ink">Dictating</span>
+                    <span class="ui-spacer"></span>
+                    <span class="ui-voice__time" data-voice-time>00:07</span>
+                  </div>
+                  <div class="ui-voice__orb" data-voice-orb></div>
+                  <div class="ui-voice__who"><span class="ui-voice__name">Voxa</span><span class="ui-voice__with">hotkey F9, stop with Esc</span></div>
+                  <div class="ui-voice__cap" data-voice-cap>Move the retry button to the history page.</div>
+                  <div class="ui-voice__bar">
+                    <span class="ui-voice__btn" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><rect x="6" y="2" width="4" height="8" rx="2"/><path d="M3.5 8a4.5 4.5 0 0 0 9 0M8 12.5V14"/></svg></span>
+                    <span class="ui-voice__wave" aria-hidden="true"><i style="--h:4"></i><i style="--h:7"></i><i style="--h:12"></i><i style="--h:9"></i><i style="--h:16"></i><i style="--h:11"></i><i style="--h:20"></i><i style="--h:14"></i><i style="--h:8"></i><i style="--h:17"></i><i style="--h:12"></i><i style="--h:6"></i><i style="--h:10"></i><i style="--h:18"></i><i style="--h:13"></i><i style="--h:7"></i><i style="--h:15"></i><i style="--h:9"></i><i style="--h:5"></i><i style="--h:11"></i><i style="--h:7"></i><i style="--h:4"></i></span>
+                    <span class="ui-voice__btn ui-voice__end" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M2.2 9.6c3.4-2.6 8.2-2.6 11.6 0l-1.1 1.9-2.5-.9V8.9a7.5 7.5 0 0 0-4.4 0v1.7l-2.5.9z"/></svg></span>
+                  </div>
+                </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>Voxa</h3>
+          <p class="wk-line">Voice to text: an Electron desktop app with a global hotkey and a Kotlin Android keyboard.</p>
+          <ul class="wk-stack"><li>Electron</li><li>Whisper</li><li>Kotlin</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://blog.simiyonvinscentsamuel.tech/voxa-voice-to-text/">Read how it works<span aria-hidden="true"> &rarr;</span></a><a class="wk-link" href="https://github.com/blackscythe123/voxa" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/leetcode-card/1-default.webp|work/leetcode-card/2-dracula.webp|work/leetcode-card/3-sunset-compact.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/leetcode-card/1-default.webp" alt="Configurator with the live LeetCode stats card in the default theme" width="1440" height="900" loading="eager" class="is-on"><img src="work/leetcode-card/2-dracula.webp" alt="Same card switched to the dracula theme" width="1440" height="900" loading="lazy"><img src="work/leetcode-card/3-sunset-compact.webp" alt="Gradient theme with skills and heatmap sections toggled off" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>LeetCode stats card</h3>
+          <p class="wk-line">Composable LeetCode card for READMEs: six sections, 167 themes, animated SVG that plays inside GitHub's image sandbox.</p>
+          <ul class="wk-stack"><li>SVG</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github-readme-leetcode-stats.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://github.com/blackscythe123/github-readme-leetcode-stats" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/posters/unfuck-android.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-frag" ><div class="ui ui-panel ui-term" data-ui="terminal-run">
+                  <div class="ui-term__head">
+                    <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <span class="ui-term__title">unfuck-android</span>
+                    <span class="ui-meta">pwsh</span>
+                    <span class="ui-spacer"></span>
+                    <span class="ui-chip ui-chip--plain ui-term__branch"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="3.5" r="1.5"/><circle cx="5" cy="12.5" r="1.5"/><circle cx="11" cy="5.5" r="1.5"/><path d="M5 5v6M11 7c0 2.6-6 1.8-6 4"/></svg>main</span>
+                  </div>
+                  <div class="ui-term__screen" data-term-screen>
+                    <div class="ui-term__track" data-term-track>
+                      <div class="ui-term__ln ui-term__cmd"><span class="ui-term__cwd">~/unfuck-android</span><span class="ui-term__sig">&gt;</span><span class="ui-term__typed" data-term-cmd>02-debloat.ps1 -Brand auto</span></div>
+                      <div class="ui-term__ln ui-term__meter" data-term-out data-term-meter><span class="ui-term__bar" style="--p:1"><i></i></span><span class="ui-term__count" data-term-count>4 of 4 packages</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.facebook.appmanager</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.facebook.system</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.facebook.katana</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">com.jio.myjio</span><span class="ui-term__n">disabled</span><span class="ui-term__t">user 0</span></div>
+                      <div class="ui-term__ln ui-term__gap" data-term-out aria-hidden="true"></div>
+                      <div class="ui-term__ln ui-term__sum" data-term-out><span class="ui-term__key">Packages</span><span class="ui-term__val">4 disabled</span><span class="ui-term__dim">(4)</span></div>
+                      <div class="ui-term__ln ui-term__sum" data-term-out><span class="ui-term__key">APKs</span><span class="ui-term__val">kept on /system</span><span class="ui-term__dim">(0)</span></div>
+                      <div class="ui-term__ln ui-term__done" data-term-out data-term-done><span class="ui-term__ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-5"/></svg></span><b>Done</b><span class="ui-term__dim">no root</span></div>
+                      <div class="ui-term__ln ui-term__cmd" data-term-next><span class="ui-term__cwd">~/unfuck-android</span><span class="ui-term__sig">&gt;</span><span class="ui-term__typed"></span><i class="ui-term__caret" aria-hidden="true"></i></div>
+                    </div>
+                  </div>
+                </div></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>unfuck-android</h3>
+          <p class="wk-line">Zero-root Android debloating: disables vendor apps and trackers over adb and keeps the APKs on the system.</p>
+          <ul class="wk-stack"><li>PowerShell</li><li>adb</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://github.com/blackscythe123/unfuck-android" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/chillz.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><img src="work/chillz.webp?v=2" alt="Chillz IPTV channel browser" loading="lazy" style="object-position:top"></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Open source</span><span class="wk-year">2026</span></div>
+          <h3>Chillz IPTV</h3>
+          <p class="wk-line">Cross-platform live TV app with HLS playback and a channel browser with category, country and language filters.</p>
+          <ul class="wk-stack"><li>Flutter</li><li>HLS</li><li>libVLC</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://chillz-iptv.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a><a class="wk-link" href="https://github.com/blackscythe123/Chillz-iptv" target="_blank" rel="noopener">GitHub<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/clash/1-gameplay.webp|work/clash/2-gameplay-poison.webp|work/clash/3-elo-curve.webp|work/clash/4-standings.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/clash/1-gameplay.webp" alt="Live match replay on a maze arena: bots labelled by team with HP-heal floaters, placements and Elo panel, turn events and playback controls" width="1440" height="900" loading="eager" class="is-on"><img src="work/clash/2-gameplay-poison.webp" alt="Mid-fight replay with poison potion and heal floaters, per-bot score breakdown and turn events" width="1440" height="900" loading="lazy"><img src="work/clash/3-elo-curve.webp" alt="Player deep-dive with placement distribution and Elo progression chart over 22 matches" width="1440" height="900" loading="lazy"><img src="work/clash/4-standings.webp" alt="Tournament standings table with Elo, wins, podium rate and placement breakdown" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">Built</span><span class="wk-year">2026</span></div>
+          <h3>clash-of-progs</h3>
+          <p class="wk-line">Browser arena where Python bots move on a 2D grid, collect powerups and fight rival algorithms. Built for IEEE Day at SSN.</p>
+          <ul class="wk-stack"><li>Python</li><li>Browser</li><li>Vercel</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://clash-of-progs.vercel.app" target="_blank" rel="noopener">Live arena<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+    </div>
+   </div>
+  </div>
+</section>
+
+<section class="v4-sec v4-writing" id="writing" aria-labelledby="writing-h">
+  <div class="v4-in">
+    <p class="v4-eye" data-reveal>Writing</p>
+    <div class="v4-writing__head">
+      <h2 class="v4-h2" id="writing-h" data-split>Notes from the repos</h2>
+      <p class="v4-writing__lede" data-reveal>Technical write-ups of things I built, covering architecture, code and what was hard.</p>
+    </div>
+    <div class="posts-rail">
+      <div class="posts" data-posts tabindex="0" aria-label="Latest posts, scroll sideways for more">
+        <a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/cc-cms-github-actions/" data-reveal>
+  <time datetime="2026-11-03">3 November 2026</time>
+  <h3>A zero-database CMS for SSN Coding Club, and the GitHub Actions that run it</h3>
+  <p>How the SSN Coding Club CMS stores every post, role and image in Git, and how one GitHub Actions workflow validates content, enforces commit policy and deploys only the apps that changed.</p>
+  <span class="post-card__tags">GitHub Actions · Next.js · Vercel · Git as a database · CMS</span>
+</a>
+<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/voxa-voice-to-text/" data-reveal>
+  <time datetime="2026-11-03">3 November 2026</time>
+  <h3>Voxa: one dictation pipeline, two clients, a borrowed ChatGPT session</h3>
+  <p>How Voxa gets transcription with no backend: an Electron desktop app and a Kotlin Android keyboard sign in to chatgpt.com, exchange the session cookie for a bearer token, and call its undocumented web transcription endpoint directly. Covers the sign-in flow, the exact request, hotkey capture, text insertion, and the trade-offs of depending on a personal ChatGPT session.</p>
+  <span class="post-card__tags">Electron · Kotlin · Android · IME · Reverse Engineering · System Design</span>
+</a>
+<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/github-profile-platform/" data-reveal>
+  <time datetime="2026-11-02">2 November 2026</time>
+  <h3>The five Vercel services behind my GitHub profile</h3>
+  <p>Five small Vercel services render the animated cards on my GitHub profile: a 30-palette colour clock shared across all of them, Redis state for a live coding mascot, and Actions that refresh the rest.</p>
+  <span class="post-card__tags">Vercel · SVG · Upstash Redis · GitHub Actions · Edge caching</span>
+</a>
+<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/trivarna-ctf-writeup/" data-reveal>
+  <time datetime="2026-08-16">16 August 2026</time>
+  <h3>TRIVARNA 2.0: 13 challenges, 3,400 points, and the solves worth writing up</h3>
+  <p>A write-up of TRIVARNA 2.0, a CSEMA capture-the-flag event: how I triaged across categories, then deep dives into an ECDSA nonce-reuse key recovery, an ARM64 native library emulated with Unicorn, a JWT jku header-injection bug, and an MQTT forensics chain.</p>
+  <span class="post-card__tags">CTF · Cryptography · Reverse Engineering · Android · Security</span>
+</a>
+<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/flashbook-serverless-ai/" data-reveal>
+  <time datetime="2026-03-08">8 March 2026</time>
+  <h3>FlashBook: a serverless pipeline that turns PDFs into learning cards</h3>
+  <p>How I built FlashBook, a Flutter app backed by API Gateway, Lambda, DynamoDB, S3 and Cognito that turns PDFs into swipeable AI learning cards, with presigned uploads, a hash-keyed summary cache and Gemini behind it.</p>
+  <span class="post-card__tags">Flutter · AWS Lambda · DynamoDB · Serverless · Gemini</span>
+</a>
+<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/farmledge-sih-2025/" data-reveal>
+  <time datetime="2025-09-23">23 September 2025</time>
+  <h3>FarmLedge: farm-to-consumer traceability on a testnet</h3>
+  <p>FarmLedge, a Smart India Hackathon 2025 national finalist project: batches of produce on the Arbitrum Sepolia testnet, provenance on IPFS, and Stripe-gated on-chain ownership transfer, with the contract code and its flaws.</p>
+  <span class="post-card__tags">Solidity · Blockchain · TypeScript · Smart India Hackathon</span>
+</a>
+<a class="post-card post-card--more" href="https://blog.simiyonvinscentsamuel.tech/" data-reveal><span>Every post</span><h3>More on the engineering blog</h3><p>Architecture write-ups, request flows and the code behind them.</p><span class="post-card__go" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+    <div class="posts-nav">
+      <a class="btn btn--secondary btn--arrow v4-writing__all" href="https://blog.simiyonvinscentsamuel.tech/">All writing</a>
+      <div class="posts-nav__btns">
+        <button type="button" class="posts-nav__btn" data-posts-prev aria-label="Previous posts">&larr;</button>
+        <button type="button" class="posts-nav__btn" data-posts-next aria-label="More posts">&rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="v4-sec v4-dark v4-contact" id="contact" aria-labelledby="contact-h">
+  <div class="v4-in">
+    <p class="v4-eye" data-reveal>Contact</p>
+    <h2 class="v4-contact__line" id="contact-h" data-split>Hiring an intern or a freelancer? Email me.</h2>
+    <a class="v4-contact__mail" href="mailto:samsamuel234567@gmail.com" data-reveal><span class="v4-contact__mailtext">samsamuel234567@gmail.com</span><span class="v4-contact__arrow" aria-hidden="true">&#8599;</span></a>
+    <ul class="v4-contact__links">
+      <li><a href="mailto:samsamuel234567@gmail.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/simiyonvinscentsamuel/" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/blackscythe123" rel="noopener">GitHub</a></li>
+      <li><a href="https://leetcode.com/u/blackscythe123/" rel="noopener">LeetCode</a></li>
+      <li><a href="resume.pdf">Résumé</a></li>
+    </ul>
+    <p class="v4-contact__giant" aria-hidden="true" data-giant>Simiyon Vinscent Samuel</p>
+    <p class="v4-contact__legal">&copy; 2026 Simiyon Vinscent Samuel. Chennai, India.</p>
+  </div>
+</footer>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/diagrams/mount.js"></script>
+<script src="v4/work.js?v=mw8epah3" defer></script>
+<script src="v4/slides.js?v=mw8epah3" defer></script>
+<script type="module" src="v4/ribbon.js?v=mw8epah3"></script>
+</body>
+</html>
