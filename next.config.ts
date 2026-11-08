@@ -1,21 +1,9 @@
 import type { NextConfig } from "next";
 
+// v3 (taste-skill build): the site is the static page public/index.html.
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'github.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.jsdelivr.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+  async rewrites() {
+    return { beforeFiles: [{ source: "/", destination: "/index.html" }] };
   },
 };
 
