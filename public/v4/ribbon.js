@@ -137,11 +137,13 @@ const FILM_FLAG = await (async function () {
     catch (e) { return false; }
   }
 
+  var glBroken = false;   /* set when the GPU rejects the ribbon's shader: the plain card list stays for this visit */
   function mount() {
-    if (live || !mqW.matches || mqR.matches || !webglOk()) return;
+    if (live || glBroken || !mqW.matches || mqR.matches || !webglOk()) return;
     var renderer;
     try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' }); }
     catch (e) { return; }
+    renderer.debug.onShaderError = function () { glBroken = true; };   /* a shader that fails to compile or link */
     renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
     renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -367,6 +369,7 @@ const FILM_FLAG = await (async function () {
       if (Math.abs(dp) > 0.00008) { cat.classList.add('is-run'); cat.classList.toggle('is-back', dp < 0); catIdle = 0; }
       else if (++catIdle > 14) cat.classList.remove('is-run');
       renderer.render(scene, camera);
+      if (glBroken) { setTimeout(unmount, 0); return; }   /* fall back to the plain card list instead of an empty box */
     }
 
     function run() { if (!raf) { last = 0; p = readTarget(); raf = requestAnimationFrame(frame); } }
