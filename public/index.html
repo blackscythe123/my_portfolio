@@ -48,12 +48,12 @@
 <link rel="stylesheet" href="assets/ui/pipeline-board/fragment.css">
 <link rel="stylesheet" href="assets/ui/window/fragment.css">
 <link rel="stylesheet" href="assets/diagrams/diagram.css">
-<link rel="stylesheet" href="v4/shell.css?v=mw8fwj6e">
-<link rel="stylesheet" href="v4/work.css?v=mw8fwj6e">
+<link rel="stylesheet" href="v4/shell.css?v=mw9e7vw1">
+<link rel="stylesheet" href="v4/work.css?v=mw9e7vw1">
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
-<script defer src="v4/shell.js?v=mw8fwj6e"></script>
+<script defer src="v4/shell.js?v=mw9e7vw1"></script>
 
 </head>
 <body>
@@ -133,8 +133,8 @@
   <link rel="stylesheet" href="assets/ui/pipeline-board/fragment.css">
   <link rel="stylesheet" href="assets/ui/voice/fragment.css">
   <link rel="stylesheet" href="assets/ui/terminal-run/fragment.css">
-  <link rel="stylesheet" href="v4/work.css?v=mw8fwj6e">
-  <script src="v4/work.js?v=mw8fwj6e" defer></script>   (after gsap, ScrollTrigger, shell.js)
+  <link rel="stylesheet" href="v4/work.css?v=mw9e7vw1">
+  <script src="v4/work.js?v=mw9e7vw1" defer></script>   (after gsap, ScrollTrigger, shell.js)
   assets/ui/ui.js comes with assets/system.js. Screenshots used: work/{qikskill,cc-portal,mcme,cihc,honeyledge,thamarai,peaceful,leetcode-card,chillz,clash}.webp -->
 <section class="w-sec wk" id="work" aria-labelledby="work-h">
   <div class="w-wrap wk-head">
@@ -183,6 +183,16 @@
           <p class="wk-line">Community healthcare web platform for Chathriyan Integrated Health Care.</p>
           <ul class="wk-stack"><li>Next.js</li><li>Drizzle ORM</li><li>Supabase</li><li>Tailwind</li></ul>
           <p class="wk-links"><a class="wk-link" href="https://chathriyanone.vercel.app" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
+        </div>
+      </article>
+      <article class="wk-card" data-wk-card data-tex="work/chainwatch/1-home.webp|work/chainwatch/2-overview.webp|work/chainwatch/3-alert-queue.webp|work/chainwatch/4-entity-network.webp">
+        <div class="wk-media"><div class="wk-media__in" data-wk-media><div class="wk-slides" data-slides><img src="work/chainwatch/1-home.webp" alt="Landing hero with the flagged-volume chart on the ChainWatch site" width="1440" height="900" loading="eager" class="is-on"><img src="work/chainwatch/2-overview.webp" alt="Console overview after replaying the sample capture: KPIs, daily activity and the live event stream" width="1440" height="900" loading="lazy"><img src="work/chainwatch/3-alert-queue.webp" alt="Ranked alert queue of laundering cases with peak risk, hops, jurisdictions and real-world precedent" width="1440" height="900" loading="lazy"><img src="work/chainwatch/4-entity-network.webp" alt="Entity network graph of wallets coloured by risk, with exchange and watchlist markers" width="1440" height="900" loading="lazy"><span class="wk-slides__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></span></div></div></div>
+        <div class="wk-body">
+          <div class="wk-meta"><span class="wk-chip">SIH 2026</span><span class="wk-year">2026</span></div>
+          <h3>ChainWatch</h3>
+          <p class="wk-line">Offline Bitcoin transaction monitoring: a causal XGBoost model with SHAP-explained alerts, built with team Hashcrofts for SIH 2026.</p>
+          <ul class="wk-stack"><li>Python</li><li>XGBoost</li><li>FastAPI</li><li>Next.js</li></ul>
+          <p class="wk-links"><a class="wk-link" href="https://blog.simiyonvinscentsamuel.tech/chainwatch-sih-2026/">Read how it works<span aria-hidden="true"> &rarr;</span></a><a class="wk-link" href="https://chainwatch.hashcrofts.tech" target="_blank" rel="noopener">Live site<span aria-hidden="true"> &#8599;</span></a></p>
         </div>
       </article>
       <article class="wk-card" data-wk-card data-tex="work/honeyledge/1-home.webp|work/honeyledge/2-verify.webp|work/honeyledge/3-iot.webp|work/honeyledge/4-market.webp">
@@ -394,6 +404,12 @@
   <p>A deep dive into the SSN Coding Club CMS: Git as the database, the draft-branch and pull-request publish flow, role and approval rules enforced server-side, and one GitHub Actions workflow that validates content and deploys only the apps that changed.</p>
   <span class="post-card__tags">GitHub Actions · Next.js · Vercel · Git as a database · CMS</span>
 </a>
+<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/claude-coding-mascot-bloub/" data-reveal>
+  <time datetime="2026-11-02">2 November 2026</time>
+  <h3>A coding mascot for GitHub READMEs, and the Bloub engine under it</h3>
+  <p>How a VS Code extension, a Vercel function and Redis turn editor activity into a sleeping or coding cloud inside GitHub's image proxy, and how the Bloub engine by Jérémy Perret was extended with faces, animations and generators to bake the cards.</p>
+  <span class="post-card__tags">VS Code · SVG · SMIL · Redis · Vercel · System design</span>
+</a>
 <a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/github-profile-platform/" data-reveal>
   <time datetime="2026-11-02">2 November 2026</time>
   <h3>The five Vercel services behind my GitHub profile</h3>
@@ -412,23 +428,17 @@
   <p>How HoneyLedge records honey batches in a Solidity contract, splits them into child batches that keep their lineage, settles Cashfree payments through a relayer, and raises hive alerts from a sensor simulator, plus the three-check QR gate and ESP32 sensors that are still only a proposal.</p>
   <span class="post-card__tags">Blockchain · Arbitrum · Next.js · IoT · Solidity · System design</span>
 </a>
+<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/chainwatch-sih-2026/" data-reveal>
+  <time datetime="2026-09-07">7 September 2026</time>
+  <h3>ChainWatch: offline, explainable anomaly detection on Bitcoin transaction traffic for SIH 2026</h3>
+  <p>How team Hashcrofts built ChainWatch for the NTRO problem statement SIH26146, and what I built inside it: a causal feature pipeline, a calibrated XGBoost model with SHAP reasons, Safe-CIOH entity clustering, an alerts.jsonl pipeline, an offline wheelhouse installer and a Redis-backed telemetry map.</p>
+  <span class="post-card__tags">Python · XGBoost · Bitcoin · SIH 2026 · Offline · Redis</span>
+</a>
 <a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/trivarna-ctf-writeup/" data-reveal>
   <time datetime="2026-08-16">16 August 2026</time>
   <h3>TRIVARNA 2.0: 13 challenges, 3,400 points, and the solves worth writing up</h3>
   <p>A write-up of TRIVARNA 2.0, a CSEMA capture-the-flag event: how I triaged across categories, then deep dives into an ECDSA nonce-reuse key recovery, an ARM64 native library emulated with Unicorn, a JWT jku header-injection bug, and an MQTT forensics chain.</p>
   <span class="post-card__tags">CTF · Cryptography · Reverse Engineering · Android · Security</span>
-</a>
-<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/crime-intelligence-assistant/" data-reveal>
-  <time datetime="2026-07-25">25 July 2026</time>
-  <h3>Hardening a conversational crime-intelligence assistant on Zoho Catalyst</h3>
-  <p>How a shortlisted Zoho hackathon assistant for state police works: a LangGraph retrieval pipeline over graph, RAG and SQL, Zia voice in three languages, and the hardening I did: a CORS wildcard guard, locks around the indexes that lost writes, and a security pass on rank-based RBAC and expiring tokens.</p>
-  <span class="post-card__tags">Zoho Catalyst · FastAPI · LangGraph · Security · RBAC</span>
-</a>
-<a class="post-card" href="https://blog.simiyonvinscentsamuel.tech/leetcode-stats-card-svg/" data-reveal>
-  <time datetime="2026-07-13">13 July 2026</time>
-  <h3>A LeetCode stats card that animates inside GitHub's image proxy</h3>
-  <p>How a single serverless function turns LeetCode data into a composable SVG card with six sections and 167 themes: a layout engine without a solver, streaks from the full history, CSS-only animation that survives an img tag, a shared-clock colour cycle behind camo, and cache headers that never leave a broken image.</p>
-  <span class="post-card__tags">SVG · Vercel · TypeScript · GitHub README · System design</span>
 </a>
 <a class="post-card post-card--more" href="https://blog.simiyonvinscentsamuel.tech/" data-reveal><span>Every post</span><h3>More on the engineering blog</h3><p>Architecture write-ups, request flows and the code behind them.</p><span class="post-card__go" aria-hidden="true">&rarr;</span></a>
       </div>
@@ -463,8 +473,8 @@
 
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/diagrams/mount.js"></script>
-<script src="v4/work.js?v=mw8fwj6e" defer></script>
-<script src="v4/slides.js?v=mw8fwj6e" defer></script>
-<script type="module" src="v4/ribbon.js?v=mw8fwj6e"></script>
+<script src="v4/work.js?v=mw9e7vw1" defer></script>
+<script src="v4/slides.js?v=mw9e7vw1" defer></script>
+<script type="module" src="v4/ribbon.js?v=mw9e7vw1"></script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+[
+ {
+  "src": "work/chainwatch/1-home.webp",
+  "alt": "Landing hero with the flagged-volume chart on the ChainWatch site",
+  "page": "Home"
+ },
+ {
+  "src": "work/chainwatch/2-overview.webp",
+  "alt": "Console overview after replaying the sample capture: KPIs, daily activity and the live event stream",
+  "page": "Overview"
+ },
+ {
+  "src": "work/chainwatch/3-alert-queue.webp",
+  "alt": "Ranked alert queue of laundering cases with peak risk, hops, jurisdictions and real-world precedent",
+  "page": "Alert queue"
+ },
+ {
+  "src": "work/chainwatch/4-entity-network.webp",
+  "alt": "Entity network graph of wallets coloured by risk, with exchange and watchlist markers",
+  "page": "Entity network"
+ }
+]

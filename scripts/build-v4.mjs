@@ -35,7 +35,7 @@ const card = (p, prefix) => `<a class="post-card" href="${prefix}/${esc(p.slug)}
 
 // ---- card screenshot loops: replace a card's single image with its shots.json loop ----
 const LOOPS = { 'qikskill.webp': 'kaushalam', 'mcme.webp': 'mcme', 'cihc.webp': 'cihc', 'thamarai.webp': 'thamarai', 'peaceful.webp': 'peaceful',
-  'honeyledge.webp': 'honeyledge', 'clash.webp': 'clash', 'leetcode-card.webp': 'leetcode-card', 'chillz.webp': 'chillz', 'cms/1-write.webp': 'cc-portal' };
+  'honeyledge.webp': 'honeyledge', 'clash.webp': 'clash', 'leetcode-card.webp': 'leetcode-card', 'chillz.webp': 'chillz', 'cms/1-write.webp': 'cc-portal', 'chainwatch/1-home.webp': 'chainwatch' };
 const PREPEND = { 'cc-portal': [
   { src: 'work/cms/1-write.webp', alt: 'Writing an article in the Coding Club CMS Studio with the live preview beside it' },
   { src: 'work/cms/2-submitted.webp', alt: 'The Studio after Submit: the post is on a draft branch and opened as pull request #28' },
