@@ -14,7 +14,9 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
   var VH_PER_CARD = 34;      /* scroll length per card, vh */
   var SMOOTH = 0.09;         /* per-frame (60 Hz) easing of progress toward the scroll target */
   var SWAP_MS = 2000;        /* screenshot change interval for cards with several images */
-  var CARD_W = 2.6, CARD_H = 1.635, GAP = 0.03, STEP = CARD_W + GAP;   /* bigger cards: the front one fills about 43% of the width */
+  var FILM = true;           /* experiment: render the ribbon as a strip of film (set false to get the plain cards back) */
+  var FILM_BAND = 0.14;      /* film border above and below the picture, as a share of the frame height */
+  var CARD_W = 2.6, CARD_H = FILM ? 1.635 / (1 - 2 * 0.14) : 1.635, GAP = FILM ? 0 : 0.03, STEP = CARD_W + GAP;   /* film keeps the picture the same size and adds the border */
   var NX = 28, NY = 3;
 
   var mqW = window.matchMedia('(min-width: 760px)');
@@ -78,6 +80,42 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
     '  gl_FragColor = vec4(col, a);',
     '}'
   ].join('\n');
+
+  var FILM_FRAG = [
+    'uniform sampler2D uMap; uniform sampler2D uPrev; uniform vec2 uCov; uniform vec2 uCovPrev;',
+    'uniform float uMix; uniform float uReady; uniform vec3 uFilm; varying vec2 vUv;',
+    'const vec2 SZ = vec2(' + CARD_W.toFixed(3) + ',' + CARD_H.toFixed(3) + ');',
+    'const float BAND = ' + FILM_BAND.toFixed(3) + ';',
+    'float hash(vec2 q){ return fract(sin(dot(q, vec2(12.9898, 78.233))) * 43758.5453); }',
+    'float rbox(vec2 q, vec2 h, float r){ vec2 d = abs(q) - h + r; return length(max(d, 0.)) + min(max(d.x, d.y), 0.) - r; }',
+    'void main(){',
+    '  vec2 uv = vUv; if(!gl_FrontFacing) uv.x = 1. - uv.x;',
+    '  vec2 p = (uv - .5) * SZ;',
+    /* sprocket holes: 8 per frame in each band, punched through (discard) so the page shows behind */
+    '  float bandH = SZ.y * BAND; float yb = SZ.y * .5 - bandH * .5;',
+    '  float pitch = SZ.x / 8.; float hx = mod(p.x + SZ.x * .5, pitch) - pitch * .5;',
+    '  float hole = rbox(vec2(hx, abs(p.y) - yb), vec2(pitch * .2, bandH * .26), .018);',
+    '  if (abs(p.y) > SZ.y * .5 - bandH && hole < 0.) discard;',
+    /* picture window, with a thin black gutter between frames */
+    '  float py = (uv.y - BAND) / (1. - 2. * BAND);',
+    '  float gut = .03 / SZ.x; float px = (uv.x - gut) / (1. - 2. * gut);',
+    '  vec3 film = uFilm;',
+    '  vec3 col = film;',
+    '  if (py > 0. && py < 1. && px > 0. && px < 1.) {',
+    '    vec2 q = vec2(px, py);',
+    '    vec3 c0 = texture2D(uMap, (q - .5) * uCov + .5).rgb;',
+    '    vec3 c1 = texture2D(uPrev, (q - .5) * uCovPrev + .5).rgb;',
+    '    col = mix(mix(vec3(.075), mix(c0, c1, uMix), uReady), film, 0.);',
+    '    vec2 e = q - .5; col *= 1. - dot(e, e) * .35;',                  /* gentle vignette per frame */
+    '  } else {',
+    '    float edge = step(abs(p.y), SZ.y * .5 - .012);',                 /* faint highlight on the film edge */
+    '    col += vec3(.06) * (1. - edge);',
+    '  }',
+    '  col += (hash(floor(uv * vec2(900., 560.))) - .5) * .045;',          /* film grain */
+    '  gl_FragColor = vec4(col, 1.);',
+    '}'
+  ].join('\n');
+  if (FILM) FRAG = FILM_FRAG;
 
   var live = null;   /* current mounted ribbon, or null */
 
@@ -144,8 +182,13 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
 
     /* ---------- cards ---------- */
     var loader = new THREE.TextureLoader();
+    /* film base: charcoal on a dark page so the sprocket holes read, near-black on a light page */
+    function filmTone() {
+      return document.documentElement.getAttribute('data-theme') === 'light' ? new THREE.Color(0.055, 0.05, 0.048) : new THREE.Color(0.2, 0.195, 0.19);
+    }
     function coverOf(tex) {
-      var ia = tex && tex.image && tex.image.width ? tex.image.width / tex.image.height : CARD_W / CARD_H, ca = CARD_W / CARD_H;
+      var picH = FILM ? CARD_H * (1 - 2 * FILM_BAND) : CARD_H, picW = FILM ? CARD_W - 0.06 : CARD_W;
+      var ia = tex && tex.image && tex.image.width ? tex.image.width / tex.image.height : picW / picH, ca = picW / picH;
       return ia > ca ? new THREE.Vector2(ca / ia, 1) : new THREE.Vector2(1, ia / ca);
     }
     var items = cards.map(function (el, i) {
@@ -155,7 +198,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
         uniforms: {
           uMap: { value: dummy }, uPrev: { value: dummy },
           uCov: { value: new THREE.Vector2(1, 1) }, uCovPrev: { value: new THREE.Vector2(1, 1) },
-          uMix: { value: 0 }, uReady: { value: 0 }
+          uMix: { value: 0 }, uReady: { value: 0 }, uFilm: { value: filmTone() }
         }
       });
       var mesh = new THREE.Mesh(geo, mat);
@@ -340,10 +383,13 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
     }
     canvas.addEventListener('pointermove', onMove);
     canvas.addEventListener('click', onClick);
+    /* the theme toggle flips data-theme on <html>: retint the film to match */
+    var themeObs = new MutationObserver(function () { var t = filmTone(); items.forEach(function (it) { it.mat.uniforms.uFilm.value = t; }); });
+    themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     live = {
       destroy: function () {
-        halt(); io.disconnect(); ro.disconnect();
+        halt(); io.disconnect(); ro.disconnect(); themeObs.disconnect();
         canvas.removeEventListener('pointermove', onMove);
         canvas.removeEventListener('click', onClick);
         items.forEach(function (it) { it.mesh.geometry.dispose(); it.mat.dispose(); it.tex.forEach(function (t) { if (t) t.dispose(); }); });
