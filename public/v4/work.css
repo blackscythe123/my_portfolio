@@ -61,7 +61,7 @@
 .wk-rpanel {
   position: absolute; left: clamp(16px, 3vw, 56px); bottom: clamp(28px, 6svh, 64px); width: min(330px, 22vw); min-width: 260px;
   padding: 4px; border-radius: 20px; border: 1px solid var(--w-line);
-  background: color-mix(in srgb, var(--w-bg) 62%, transparent);
+  background: color-mix(in srgb, var(--w-bg) 88%, transparent);
   -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
   box-shadow: 0 30px 60px -36px var(--w-shadow);
   opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .35s ease, transform .35s ease;

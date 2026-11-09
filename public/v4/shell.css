@@ -206,7 +206,7 @@ main > section.v4-sec, main > section.v4-hero, footer.v4-sec { height: auto; min
 /* ---- themes: light (default tokens in head) and dark ---- */
 :root, html[data-theme="light"] { --p-card: #ffffff; --p-line: rgba(11, 12, 14, .12); color-scheme: light; }
 html[data-theme="dark"] {
-  --p-bg: #0f1115; --p-surface: #181b22; --p-ink: #eceef2; --p-muted: #9aa1ad;
+  --p-bg: #0f1115; --p-surface: #181b22; --p-ink: #eceef2; --p-muted: #aab0bb;
   --p-accent: #7d8bff; --p-accent-ink: #0f1115; --p-action: #7d8bff; --p-action-ink: #0f1115;
   --p-card: #161920; --p-line: rgba(236, 238, 242, .12);
   --ink: var(--p-ink); --muted: var(--p-muted); --g-main: var(--p-bg); --g-alt: var(--p-surface);
@@ -224,3 +224,6 @@ html[data-theme="dark"] .btn--primary { background: var(--p-action); color: var(
 html[data-theme="dark"] .btn--secondary { color: var(--p-ink); border-color: var(--p-line); }
 
 .post-card:hover h3 { color: var(--p-bg); }
+
+/* the hero is exactly one screen: its own bottom padding (not the kit section padding) and a one-screen minimum */
+main > section.v4-hero { min-height: 100svh; padding-bottom: 32px; }
