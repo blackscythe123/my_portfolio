@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@flags-sdk/vercel": "^1.6.0",
     "@headlessui/react": "^2.2.9",
     "clsx": "^2.1.1",
+    "flags": "^4.4.0",
     "framer-motion": "^12.23.26",
     "next": "16.0.10",
     "react": "19.2.1",
