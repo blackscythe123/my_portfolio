@@ -48,7 +48,7 @@ function loopify(html) {
     const f = path.join(pub, 'work', slug, 'shots.json'); if (!fs.existsSync(f)) return m;
     const shots = [...(PREPEND[slug] || []), ...JSON.parse(fs.readFileSync(f, 'utf8'))].slice(0, 6);
     if (shots.length < 2) return m;
-    const imgs = shots.map((s, i) => `<img src="${esc(s.src)}" alt="${esc(s.alt || '')}" width="1440" height="900" loading="${i ? 'lazy' : 'eager'}"${i ? '' : ' class="is-on"'}>`).join('');
+    const imgs = shots.map((s, i) => `<img src="${esc(s.src)}" alt="${esc(s.alt || '')}" width="1440" height="900" loading="lazy"${i ? '' : ' class="is-on"'}>`).join('');
     return `<div class="wk-slides" data-slides>${imgs}<span class="wk-slides__dots" aria-hidden="true">${shots.map((_, i) => `<i${i ? '' : ' class="is-on"'}></i>`).join('')}</span></div>`;
   });
 }
@@ -107,6 +107,22 @@ ${v4('contact.html')}
 </html>
 `;
 const stamp = Date.now().toString(36);
-fs.writeFileSync(path.join(pub, 'index.html'), sub(html).replace(/("v4\/[\w.-]+\.(?:css|js))"/g, `$1?v=${stamp}"`));
+// ---- images: a 720px copy for HTML cards (srcset), the light animated profile card, a small nav avatar,
+//      and lazy loading for everything below the hero. The 1440px originals stay for the 3D ribbon (data-tex).
+function optimiseImages(page) {
+  return page.replace(/<img\b[^>]*>/g, (tag) => {
+    let t = tag;
+    if (/class="v4-nav__avatar"/.test(t)) return t.replace('src="me-github.webp"', 'src="me-github-80.webp"');
+    t = t.replace('src="work/github-profile.webp"', 'src="work/github-profile-720.webp"');
+    const m = t.match(/src="(work\/[\w./-]+?)\.webp(\?[^"]*)?"/);
+    if (m && !/srcset=/.test(t) && fs.existsSync(path.join(pub, m[1] + '-720.webp'))) {
+      t = t.replace(/<img\b/, `<img srcset="${m[1]}-720.webp 720w, ${m[1]}.webp${m[2] || ''} 1440w" sizes="(max-width: 760px) 92vw, 440px"`);
+    }
+    const hero = /fetchpriority="high"/.test(t);
+    if (!hero) t = /\sloading="/.test(t) ? t.replace(/\sloading="[^"]*"/, ' loading="lazy"') : t.replace(/<img\b/, '<img loading="lazy"');
+    return t;
+  });
+}
+fs.writeFileSync(path.join(pub, 'index.html'), optimiseImages(sub(html)).replace(/("v4\/[\w.-]+\.(?:css|js))"/g, `$1?v=${stamp}"`));
 
 console.log(`index.html ${html.length} bytes, ${posts.length} posts from ${loaded.from}: ${posts.map((p) => p.date + ' ' + p.slug).join(', ')}`);
