@@ -15,8 +15,8 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
   var SMOOTH = 0.09;         /* per-frame (60 Hz) easing of progress toward the scroll target */
   var SWAP_MS = 2000;        /* screenshot change interval for cards with several images */
   var FILM = true;           /* experiment: render the ribbon as a strip of film (set false to get the plain cards back) */
-  var FILM_BAND = 0.14;      /* film border above and below the picture, as a share of the frame height */
-  var CARD_W = 2.6, CARD_H = FILM ? 1.635 / (1 - 2 * 0.14) : 1.635, GAP = FILM ? 0 : 0.03, STEP = CARD_W + GAP;   /* film keeps the picture the same size and adds the border */
+  var FILM_BAND = 0.075;     /* film border above and below the picture, as a share of the frame height */
+  var CARD_W = 2.6, CARD_H = FILM ? 1.635 / (1 - 2 * FILM_BAND) : 1.635, GAP = FILM ? 0 : 0.03, STEP = CARD_W + GAP;   /* film keeps the picture the same size and adds the border */
   var NX = 28, NY = 3;
 
   var mqW = window.matchMedia('(min-width: 760px)');
@@ -93,8 +93,8 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
     '  vec2 p = (uv - .5) * SZ;',
     /* sprocket holes: 8 per frame in each band, punched through (discard) so the page shows behind */
     '  float bandH = SZ.y * BAND; float yb = SZ.y * .5 - bandH * .5;',
-    '  float pitch = SZ.x / 8.; float hx = mod(p.x + SZ.x * .5, pitch) - pitch * .5;',
-    '  float hole = rbox(vec2(hx, abs(p.y) - yb), vec2(pitch * .2, bandH * .26), .018);',
+    '  float pitch = SZ.x / 10.; float hx = mod(p.x + SZ.x * .5, pitch) - pitch * .5;',
+    '  float hole = rbox(vec2(hx, abs(p.y) - yb), vec2(pitch * .2, bandH * .27), .012);',
     '  if (abs(p.y) > SZ.y * .5 - bandH && hole < 0.) discard;',
     /* picture window, with a thin black gutter between frames */
     '  float py = (uv.y - BAND) / (1. - 2. * BAND);',
