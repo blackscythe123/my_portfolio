@@ -4,6 +4,19 @@
    Fallback (no WebGL, reduced motion, narrow screens, three.js failing to load) is the plain HTML card list. */
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 
+/* The Vercel flag "film-reel" (read through /api/flags) picks the film reel or the plain cards.
+   ?film=1 or ?film=0 in the URL overrides it for previews. Any failure or a slow answer means plain cards. */
+const FILM_FLAG = await (async function () {
+  var q = new URLSearchParams(location.search).get('film');
+  if (q === '1' || q === '0') return q === '1';
+  try {
+    var ctl = new AbortController(), t = setTimeout(function () { ctl.abort(); }, 1500);
+    var r = await fetch('/api/flags', { signal: ctl.signal });
+    clearTimeout(t);
+    return r.ok ? !!(await r.json()).filmReel : false;
+  } catch (e) { return false; }
+})();
+
 (function () {
   var sec = document.getElementById('work');
   var list = sec && sec.querySelector('[data-wk-pin]');
@@ -14,7 +27,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
   var VH_PER_CARD = 34;      /* scroll length per card, vh */
   var SMOOTH = 0.09;         /* per-frame (60 Hz) easing of progress toward the scroll target */
   var SWAP_MS = 2000;        /* screenshot change interval for cards with several images */
-  var FILM = true;           /* experiment: render the ribbon as a strip of film (set false to get the plain cards back) */
+  var FILM = FILM_FLAG;      /* film reel or plain cards, from the film-reel flag (see the top of this file) */
   var FILM_BAND = 0.075;     /* film border above and below the picture, as a share of the frame height */
   var CARD_W = 2.6, CARD_H = FILM ? 1.635 / (1 - 2 * FILM_BAND) : 1.635, GAP = FILM ? 0 : 0.03, STEP = CARD_W + GAP;   /* film keeps the picture the same size and adds the border */
   var NX = 28, NY = 3;
